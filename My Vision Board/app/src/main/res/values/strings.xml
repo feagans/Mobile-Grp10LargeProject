@@ -88,7 +88,7 @@
     <string name="import_successfully">Import Successfully</string>
     <string name="interval_time">Interval Time</string>
     <string name="interval_time_in_second_for_each_affirmation">Interval time in seconds between affirmation</string>
-    <string name="journal">Journal</string>
+    <string name="journal">To-do List</string>
     <string name="keep_checked_item">Keep</string>
     <string name="lifePurpose">My Purpose</string>
     <string name="local_backups">Local Backups</string>

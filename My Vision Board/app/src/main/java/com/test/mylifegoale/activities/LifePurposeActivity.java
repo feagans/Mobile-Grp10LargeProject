@@ -1,4 +1,5 @@
-package com.test.mylifegoale.activities;
+//Omitted as its not needed
+/*package com.test.mylifegoale.activities;
 
 import android.content.Intent;
 import android.view.View;
@@ -71,3 +72,4 @@ public class LifePurposeActivity extends BaseActivity {
         }
     }
 }
+*/

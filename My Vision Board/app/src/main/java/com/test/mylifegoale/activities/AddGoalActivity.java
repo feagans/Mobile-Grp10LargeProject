@@ -244,10 +244,11 @@ public class AddGoalActivity extends BaseActivity {
         if (this.visionModel.getName() != null && this.visionModel.getName().isEmpty()) {
             Toast.makeText(this.context, getString(R.string.title_reguire), Toast.LENGTH_SHORT).show();
             return false;
-        } else if (this.visionModel.getVisionProfile() == null || this.visionModel.getVisionProfile().isEmpty()) {
+         //Omitted as android wont let the app upload pictures from this activity
+        }/* else if (this.visionModel.getVisionProfile() == null || this.visionModel.getVisionProfile().isEmpty()) {
             Toast.makeText(this.context, getString(R.string.error_profile), Toast.LENGTH_SHORT).show();
             return false;
-        } else {
+        } */else {
             if (this.visionModel.getEndTime() != 0) {
                 if (this.visionModel.isPending() && AppConstants.getFormattedDateNew(this.visionModel.getEndTime()).before(AppConstants.getFormattedDateNew(System.currentTimeMillis()))) {
                     Toast.makeText(this.context, "End date must be set to today or greater than today.", Toast.LENGTH_LONG).show();

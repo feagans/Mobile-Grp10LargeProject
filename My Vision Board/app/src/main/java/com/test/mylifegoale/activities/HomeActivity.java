@@ -98,19 +98,22 @@ public class HomeActivity extends BaseActivity {
 
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.affirmation) {
+          //omitted button
+        /*if (id == R.id.affirmation) {
             startActivity(new Intent(this, AffirmationActivity.class));
-        } else if (id == R.id.journal) {
+        } else */
+            if (id == R.id.journal) {
             startActivity(new Intent(this, ToDolistActivity.class));
-        } else if (id == R.id.lifePurpose) {
+          //omitted button
+        } /*else if (id == R.id.lifePurpose) {
             startActivity(new Intent(this, LifePurposeActivity.class));
-        } else if (id == R.id.vision) {
+        } */else if (id == R.id.vision) {
             startActivity(new Intent(this, VisionActivity.class));
-        } else if (id == R.id.cvshare) {
+        } /*else if (id == R.id.cvshare) {
             AppConstants.shareApp(this);
-        } else if (id == R.id.cvrate) {
+        } *//*else if (id == R.id.cvrate) {
             AppConstants.showRattingDialog(this, Constants.RATTING_BAR_TITLE);
-        }
+        }*/
     }
 
     private void setDrawer() {
