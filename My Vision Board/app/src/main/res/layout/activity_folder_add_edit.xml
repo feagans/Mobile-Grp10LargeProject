@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+
+        <variable
+            name="FolderRowModel"
+            type="com.test.mylifegoale.model.FolderRowModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <include
+            android:id="@+id/includedToolbar"
+            layout="@layout/toolbar_binding" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/linRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    style="@style/CardViewEdit"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout
+                        style="@style/LinearLayoutRowAddEditItem"
+                        android:paddingRight="8dp">
+
+                        <TextView
+                            style="@style/TextViewHeaderAddEditItem"
+                            android:text="@string/folder_name" />
+
+                        <EditText
+                            android:id="@+id/etAffirmation"
+                            style="@style/TextViewLabelAddEditItem"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/et_selector_bottom_line"
+                            android:gravity="bottom"
+                            android:hint="@string/confidence"
+                            android:text="@{FolderRowModel.getName}" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardIcon"
+                    style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        style="@style/LinearLayoutRowAddEditItem"
+                        android:orientation="horizontal"
+                        android:paddingRight="8dp">
+
+                        <LinearLayout
+                            style="@style/LinearLayoutRowSubAddEditItem"
+                            android:layout_weight="1">
+
+                            <TextView
+                                style="@style/TextViewHeaderAddEditItem"
+                                android:text="@string/folder_icon" />
+
+                            <TextView
+                                style="@style/TextViewLabelAddEditItem"
+                                android:text="@string/select_folder_icon" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imgFolder"
+                            style="@style/ImageViewAddEditItem"
+                            android:background="@drawable/rounded_line"
+                            app:imageUrl="@{FolderRowModel.imageUrl}"
+
+                            />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardColor"
+                    style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        style="@style/LinearLayoutRowAddEditItem"
+                        android:orientation="horizontal"
+                        android:paddingRight="8dp">
+
+                        <LinearLayout
+                            style="@style/LinearLayoutRowSubAddEditItem"
+                            android:layout_weight="1">
+
+                            <TextView
+                                style="@style/TextViewHeaderAddEditItem"
+                                android:text="@string/folder_color" />
+
+                            <TextView
+                                style="@style/TextViewLabelAddEditItem"
+                                android:text="@string/select_folder_color" />
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:id="@+id/imgBackground"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            >
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:cardBackgroundColor="@{FolderRowModel.getColorCodes}"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp"
+                                />
+
+                        </FrameLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <Button
+                    android:id="@+id/btnAddEdit"
+                    style="@style/ButtonAddEditItem"
+                    android:text="AddEdit"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <FrameLayout
+            android:id="@+id/nativeadcontainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="StatisticRowModel"
+            type="com.test.mylifegoale.model.selection.SelectionRowModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/mainCard"
+        style="@style/CardViewEdit"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="0dp">
+
+        <LinearLayout
+            android:id="@+id/linMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            >
+
+            <ImageView
+                android:id="@+id/imgIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:padding="4dp"
+                android:visibility="gone"
+                app:tint="@color/actionbar" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/semibold"
+                android:gravity="left|center_vertical|center_horizontal|center"
+                android:padding="4dp"
+                android:text="@{StatisticRowModel.getLabel}"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

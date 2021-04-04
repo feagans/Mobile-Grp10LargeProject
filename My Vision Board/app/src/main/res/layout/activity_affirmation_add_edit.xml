@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="AffirmationRowModel"
+            type="com.test.mylifegoale.model.AffirmationRowModel" />
+
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/includedToolbar"
+            layout="@layout/toolbar_binding" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/linRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        style="@style/LinearLayoutRowAddEditItem"
+                        android:paddingRight="8dp">
+
+                        <TextView
+                            style="@style/TextViewHeaderAddEditItem"
+                            android:text="@string/affirmation" />
+
+                        <EditText
+                            android:id="@+id/etAffirmation"
+                            style="@style/TextViewLabelAddEditItem"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/et_selector_bottom_line"
+                            android:gravity="bottom"
+                            android:hint="@string/i_trust_my_self"
+                            android:inputType="textMultiLine"
+                            android:lines="4"
+                            android:maxLines="8"
+                            android:minLines="2"
+                            android:text="@{AffirmationRowModel.getQuoteText}" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/imgFolder"
+                    style="@style/CardViewEdit"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout
+                        style="@style/LinearLayoutRowAddEditItem"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            style="@style/LinearLayoutRowSubAddEditItem"
+                            android:layout_weight="1">
+
+                            <TextView
+                                style="@style/TextViewHeaderAddEditItem"
+                                android:text="@string/folder" />
+
+                            <TextView
+                                style="@style/TextViewLabelAddEditItem"
+                                android:text="@{AffirmationRowModel.folderRowModel.getName}"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                style="@style/ImageViewAddEditItem"
+                                android:background="@drawable/rounded_line"
+                                app:imageUrl="@{AffirmationRowModel.folderRowModel.getImageUrl}" />
+
+
+                            <ImageView
+                                style="@style/ImageViewCloseResetAddEditItem"
+                                android:src="@drawable/minus"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardBackground"
+                    style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        style="@style/LinearLayoutRowAddEditItem"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            style="@style/LinearLayoutRowSubAddEditItem"
+                            android:layout_weight="1">
+
+                            <TextView
+                                style="@style/TextViewHeaderAddEditItem"
+                                android:text="@string/background" />
+
+                            <TextView
+                                style="@style/TextViewLabelAddEditItem"
+                                android:text="@string/select_the_background_image" />
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:id="@+id/linBackgroundData"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="@{AffirmationRowModel.isImageFound ?  View.VISIBLE : View.GONE}">
+
+                                <FrameLayout
+                                    android:id="@+id/imgBackground"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp">
+
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        app:cardBackgroundColor="@color/white"
+                                        app:cardCornerRadius="8dp"
+                                        app:cardElevation="0dp">
+
+                                        <ImageView
+                                            style="@style/ImageViewAddEditItem"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_gravity="center"
+                                            android:adjustViewBounds="true"
+                                            android:padding="0dp"
+                                            android:scaleType="centerCrop"
+                                            app:imageUrl="@{AffirmationRowModel.getImageUrl}" />
+                                    </androidx.cardview.widget.CardView>
+                                </FrameLayout>
+
+                                <ImageView
+                                    android:id="@+id/imgDeleteBackground"
+                                    style="@style/ImageViewCloseResetAddEditItem"
+                                    android:src="@drawable/minus" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linBackgroundNoData"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="@{AffirmationRowModel.isImageFound ?  View.GONE : View.VISIBLE}">
+
+
+                                <ImageView
+                                    android:id="@+id/imgAddBackground"
+                                    style="@style/ImageViewAddEditItemAdd" />
+
+                                <ImageView
+                                    style="@style/ImageViewCloseResetAddEditItem"
+                                    android:src="@drawable/minus"
+                                    android:visibility="invisible" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardVoice"
+                    style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        style="@style/LinearLayoutRowAddEditItem"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            style="@style/LinearLayoutRowSubAddEditItem"
+                            android:layout_weight="1">
+
+                            <TextView
+                                style="@style/TextViewHeaderAddEditItem"
+                                android:text="@string/voice" />
+
+                            <TextView
+                                style="@style/TextViewLabelAddEditItem"
+                                android:text="@string/record_your_voice_to_hear_during_playing" />
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:id="@+id/linVoiceData"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="@{AffirmationRowModel.isVoiceFound ? View.VISIBLE : View.GONE}">
+
+
+                                <ImageView
+                                    android:id="@+id/imgVoice"
+                                    style="@style/ImageViewAddEditItemAdd"
+                                    android:src="@{AffirmationRowModel.isPause ?  @drawable/play :@drawable/pause}"
+
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/imgDeleteVoice"
+                                    style="@style/ImageViewCloseResetAddEditItem"
+                                    android:src="@drawable/minus" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linVoiceNoData"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="@{AffirmationRowModel.isVoiceFound ? View.GONE : View.VISIBLE}">
+
+
+                                <ImageView
+                                    android:id="@+id/imgAddVoice"
+                                    style="@style/ImageViewAddEditItemAdd" />
+
+                                <ImageView
+                                    style="@style/ImageViewCloseResetAddEditItem"
+                                    android:src="@drawable/minus"
+                                    android:visibility="invisible" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/linVoiceNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        style="@style/TextViewLabelAddEditItem"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="4dp"
+                        android:text="@string/note_"
+                        android:textColor="@color/actionbar" />
+
+                    <TextView
+                        style="@style/TextViewLabelAddEditItem"
+                        android:text="@string/adding_voice_to_affirmation_disable_because_background_voice_is_enable_in_setting"
+                        android:textColor="@color/textColorBold" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnAddEdit"
+                    style="@style/ButtonAddEditItem"
+                    android:text="@string/save"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <FrameLayout
+            android:id="@+id/nativeadcontainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            />
+    </LinearLayout>
+</layout>

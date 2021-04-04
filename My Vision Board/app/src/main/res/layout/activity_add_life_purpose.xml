@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="LifePurposeModel"
+            type="com.test.mylifegoale.model.LifePurposeModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <ScrollView
+            android:layout_above="@+id/nativeadcontainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_8sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:background="@drawable/square_input_bg"
+                    android:gravity="top"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/goal"
+                        style="@style/EditextRegularCommonTransparentBg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/goalHint"
+                        android:text="@{LifePurposeModel.getTitle}"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:background="@drawable/square_input_bg"
+                    android:gravity="top"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/goalDescription"
+                        style="@style/EditextRegularCommonTransparentBg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:hint="@string/description"
+                        android:minLines="5"
+                        android:scrollbars="vertical"
+                        android:text="@{LifePurposeModel.getDescription}"
+                        />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/saveGoal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:text="@string/saveGoal"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </ScrollView>
+        <FrameLayout
+            android:id="@+id/nativeadcontainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+</layout>

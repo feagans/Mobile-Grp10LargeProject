@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+    <item android:title="" app:showAsAction="never">
+        <group android:visible="true" android:checkableBehavior="single">
+            <item android:id="@+id/sortByCreated" android:orderInCategory="1" android:title="@string/sort_by_created"/>
+            <item android:id="@+id/sortByModified" android:orderInCategory="2" android:title="@string/sort_by_modified"/>
+        </group>
+    </item>
+    <item android:icon="@drawable/ic_magnifier" android:id="@+id/menu_search" android:title="" app:actionViewClass="androidx.appcompat.widget.SearchView" app:showAsAction="never|always|collapseActionView"/>
+    <item android:icon="@drawable/ic_add" android:id="@+id/addTask" android:title="" app:showAsAction="always"/>
+</menu>

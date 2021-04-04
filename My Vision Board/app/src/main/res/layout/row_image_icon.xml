@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="ImageRowModel"
+            type="com.test.mylifegoale.model.image.ImageRowModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@{ImageRowModel.isSelected ? @drawable/select_border : @drawable/rounded_line }"
+        >
+
+        <ImageView
+            android:id="@+id/imgFolder"
+            style="@style/ImageViewAddEditItem"
+            android:layout_gravity="center"
+            android:layout_margin="0dp"
+            app:imageUrl="@{ImageRowModel.getImageUrlSmall}"
+            />
+    </LinearLayout>
+</layout>

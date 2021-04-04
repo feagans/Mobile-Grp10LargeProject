@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="LifePurposeModel"
+            type="com.test.mylifegoale.model.LifePurposeModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="@dimen/_4sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{LifePurposeModel.title}"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_18sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/help"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_help"
+                    android:visibility="gone"
+                    app:tint="@color/colorPrimary" />
+
+                <ImageView
+                    android:id="@+id/edit"
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_edit"
+                    app:tint="@color/colorPrimary" />
+
+                <ImageView
+                    android:id="@+id/delete"
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_delete"
+                    app:tint="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text="@{LifePurposeModel.getDescription}"
+                android:textColor="@color/colorBlack" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

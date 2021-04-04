@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="RestoreListModel"
+            type="com.test.mylifegoale.backupRestore.RestoreListModel"
+            />
+
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <include
+            android:id="@+id/includedToolbar"
+            layout="@layout/toolbar_binding" />
+
+        <TextView
+            android:id="@+id/txtPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryAlpha"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            />
+<!--        android:aaaaaaaaaa="binding_1"-->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/linData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="@{RestoreListModel.isListData ? View.VISIBLE : View.GONE}"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="@{RestoreListModel.isListData ? View.GONE : View.VISIBLE}"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/_64sdp"
+                    android:layout_height="@dimen/_64sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:src="@{RestoreListModel.getNoDataIcon}"
+                    app:tint="@color/colorPrimaryAlpha" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{RestoreListModel.getNoDataText}"
+                    android:textColor="@color/actionbar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="@{RestoreListModel.getNoDataDetail}"
+                    android:textSize="16dp" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+</layout>

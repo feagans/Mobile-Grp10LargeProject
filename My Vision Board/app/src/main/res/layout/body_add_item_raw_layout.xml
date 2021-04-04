@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/addNew"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/handle"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="top|right|center_vertical|center_horizontal|center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_reorder_grey_500_24dp"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_add"
+            android:visibility="visible"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/addNewForCheckList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical|center_horizontal|center"
+            android:hint="@string/edit_view_activity_addNewItem"
+            android:paddingLeft="6dp"
+            android:textStyle="bold"
+            android:tint="@color/black"
+            android:visibility="visible" />
+    </LinearLayout>
+</LinearLayout>
+</layout>

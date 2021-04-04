@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+    <item android:id="@+id/checkAll" android:title="@string/check_all"/>
+    <item android:id="@+id/unCheckAll" android:title="@string/uncheck_all"/>
+    <item android:id="@+id/editFolder" android:title="@string/edit_folder"/>
+    <item android:id="@+id/deleteFolder" android:title="@string/delete_folder"/>
+</menu>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="VisionModel"
+            type="com.test.mylifegoale.model.VisionModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_above="@+id/llads"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_8sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_6sdp"
+                        android:background="@drawable/square_input_bg"
+                        android:gravity="top"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/goal"
+                            style="@style/EditextRegularCommonTransparentBg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/goalHint"
+                            android:text="@{VisionModel.getName}" />
+
+                        <ImageView
+                            android:id="@+id/goalSpeaker"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:onClick="onClick"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/voicee" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_6sdp"
+                        android:background="@drawable/square_input_bg">
+
+                        <Spinner
+                            android:id="@+id/categorySpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_6sdp"
+                        android:background="@drawable/square_input_bg"
+                        android:gravity="top"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/goalDescription"
+                            style="@style/EditextRegularCommonTransparentBg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="top"
+                            android:hint="@string/description"
+                            android:inputType="textMultiLine"
+                            android:lines="6"
+                            android:maxLines="5"
+                            android:overScrollMode="always"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:singleLine="false"
+                            android:text="@{VisionModel.getDescription}" />
+
+                        <ImageView
+                            android:id="@+id/descriptionSpeaker"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:onClick="onClick"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/voicee" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_6sdp"
+                        android:background="@drawable/square_input_bg"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/endTime"
+                            style="@style/TextViewStyleCommon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:hint="@string/endTime"
+                            android:text="@{VisionModel.getDateStringEdit}" />
+
+                        <ImageView
+                            android:id="@+id/clearEndDat"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:onClick="onClick"
+                            android:padding="@dimen/_4sdp"
+                            android:src="@drawable/close" />
+
+                        <ImageView
+                            android:id="@+id/datePicker"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:onClick="onClick"
+                            android:padding="@dimen/_4sdp"
+                            android:src="@drawable/calendar" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/pending"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_selector"
+                            android:onClick="onClick"
+                            android:text="@string/pending_full"
+                            android:textColor="@color/button_text_selector" />
+
+                        <Button
+                            android:id="@+id/completed"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_selector"
+                            android:onClick="onClick"
+                            android:text="@string/completed_full"
+                            android:textColor="@color/button_text_selector" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_20sdp">
+
+                    <ImageView
+                        android:id="@+id/addProfile"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_gravity="center"
+                        android:onClick="onClick" />
+                </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/llads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_ad_unit_id"
+            />
+
+    </RelativeLayout>
+
+</layout>

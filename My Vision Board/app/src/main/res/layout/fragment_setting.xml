@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/linRoot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                android:paddingTop="8dp">
+
+                <androidx.cardview.widget.CardView style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        android:id="@+id/backupRestore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextViewLabelSetting"
+                            android:text="@string/backupRestore" />
+
+                        <LinearLayout
+                            android:id="@+id/takeBackup"
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:onClick="onClick"
+                            android:orientation="horizontal"
+
+                            >
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowSubAddEditItem"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:text="@string/take_backup" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/take_backup_of_data" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="Note  : Zip Extract Password  (aaa)" />
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/localRestore"
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:onClick="onClick"
+                            android:orientation="horizontal"
+                            android:paddingRight="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:layout_weight="1"
+                                    android:text="@string/local_backups" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/restore_data_from_local_backups" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/driveRestore"
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:onClick="onClick"
+                            android:orientation="horizontal"
+                            android:paddingRight="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:layout_weight="1"
+                                    android:text="@string/drive_backups" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/restore_data_from_drive_backups" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        android:id="@+id/linReminder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextViewLabelSetting"
+                            android:text="@string/notification" />
+
+                        <LinearLayout
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:orientation="horizontal"
+                            android:paddingRight="8dp">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowSubAddEditItem"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:text="@string/daily_reminder" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/daily_affirmation_reminder" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgReminder"
+                                android:layout_width="40dp"
+                                android:layout_height="36dp"
+                                android:padding="4dp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/linReminderTime"
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:orientation="horizontal"
+                            android:paddingRight="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:layout_weight="1"
+                                    android:text="@string/time_of_reminder" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/set_your_daily_affirmation_time" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardEnableBackgroundMusic"
+                    style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextViewLabelSetting"
+                            android:text="@string/background_music" />
+
+                        <LinearLayout
+                            android:id="@+id/linEnableBackgroundMusic"
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:orientation="horizontal"
+                            android:paddingRight="8dp">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowSubAddEditItem"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:text="@string/enable_background_music" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/play_background_music_in_fullscreen" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgEnableBackgroundMusic"
+                                android:layout_width="40dp"
+                                android:layout_height="36dp"
+                                android:padding="4dp"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/linBackgroundMusic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowAddEditItem"
+                                android:orientation="horizontal"
+                                android:paddingRight="8dp">
+
+                                <LinearLayout
+                                    style="@style/LinearLayoutRowSubAddEditItem"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        style="@style/TextViewHeaderSettingItem"
+                                        android:text="@string/background_music" />
+
+                                    <TextView
+                                        style="@style/TextViewLabelSettingItem"
+                                        android:text="@string/select_background_music_for_playing_when_in_fullscreen" />
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="36dp"
+                                    android:padding="4dp"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardEnableBackgroundVoice"
+                    style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextViewLabelSetting"
+                            android:text="@string/background_voice" />
+
+                        <LinearLayout
+                            android:id="@+id/linEnableBackgroundVoice"
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:orientation="horizontal"
+                            android:paddingRight="8dp">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowSubAddEditItem"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:text="@string/enable_background_voice" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/play_background_voice_when_in_fullscreen" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgEnableBackgroundVoice"
+                                android:layout_width="40dp"
+                                android:layout_height="36dp"
+                                android:padding="4dp"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/linBackgroundVoice"
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowSubAddEditItem"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:text="@string/background_voice" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/record_your_voice_to_hear_during_playing_instead_of_affirmation_voice" />
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:id="@+id/linVoiceData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:id="@+id/imgVoice"
+                                        style="@style/ImageViewAddEditItemAdd" />
+
+                                    <ImageView
+                                        android:id="@+id/imgDeleteVoice"
+                                        style="@style/ImageViewCloseResetAddEditItem"
+                                        android:src="@drawable/minus" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/linVoiceNoData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:id="@+id/imgAddVoice"
+                                        style="@style/ImageViewAddEditItemAdd" />
+
+                                    <ImageView
+                                        style="@style/ImageViewCloseResetAddEditItem"
+                                        android:src="@drawable/minus"
+                                        android:visibility="invisible" />
+                                </LinearLayout>
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView style="@style/CardViewEdit">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextViewLabelSetting"
+                            android:text="@string/player" />
+
+                        <LinearLayout
+                            android:id="@+id/linEnableAutoPlaying"
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:orientation="horizontal"
+                            android:paddingRight="8dp">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowSubAddEditItem"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:text="@string/enable_auto_playing" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/automatically_change_the_affirmation_at_given_time_when_play_button_i_clicked" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgEnableAutoPlaying"
+                                android:layout_width="40dp"
+                                android:layout_height="36dp"
+                                android:padding="4dp"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/linAutoPlayInterval"
+                            style="@style/LinearLayoutRowAddEditItem"
+                            android:orientation="horizontal"
+                            android:paddingRight="8dp">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowSubAddEditItem"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    style="@style/TextViewHeaderSettingItem"
+                                    android:text="@string/auto_play_interval" />
+
+                                <TextView
+                                    style="@style/TextViewLabelSettingItem"
+                                    android:text="@string/interval_time_in_second_for_each_affirmation" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgAutoPlayInterval"
+                                android:layout_width="40dp"
+                                android:layout_height="36dp"
+                                android:padding="4dp"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/cardLoopPlaying"
+                                style="@style/LinearLayoutRowAddEditItem"
+                                android:orientation="horizontal"
+                                android:paddingRight="8dp">
+
+                                <LinearLayout
+                                    style="@style/LinearLayoutRowSubAddEditItem"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        style="@style/TextViewHeaderSettingItem"
+                                        android:text="@string/loop_playing" />
+
+                                    <TextView
+                                        style="@style/TextViewLabelSettingItem"
+                                        android:text="@string/loop_after_playing_ends" />
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/imgLoopPlaying"
+                                    android:layout_width="40dp"
+                                    android:layout_height="36dp"
+                                    android:padding="4dp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/cardPlayVoiceFile"
+                                style="@style/LinearLayoutRowAddEditItem"
+                                android:orientation="horizontal"
+                                android:paddingRight="8dp">
+
+                                <LinearLayout
+                                    style="@style/LinearLayoutRowSubAddEditItem"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        style="@style/TextViewHeaderSettingItem"
+                                        android:text="@string/play_voice_file" />
+
+                                    <TextView
+                                        style="@style/TextViewLabelSettingItem"
+                                        android:text="@string/play_voice_file_when_the_affirmations_shows_need_to_record_to_hear_voice" />
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/imgPlayVoiceFile"
+                                    android:layout_width="40dp"
+                                    android:layout_height="36dp"
+                                    android:padding="4dp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/cardPlayAllInFolder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowAddEditItem"
+                                android:orientation="horizontal"
+                                android:paddingRight="8dp">
+
+                                <LinearLayout
+                                    style="@style/LinearLayoutRowSubAddEditItem"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        style="@style/TextViewHeaderSettingItem"
+                                        android:text="@string/play_all_in_folder" />
+
+                                    <TextView
+                                        style="@style/TextViewLabelSettingItem"
+                                        android:text="@string/play_only_active_or_all_affirmations_when_inside_folder" />
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/imgPlayAllInFolder"
+                                    android:layout_width="40dp"
+                                    android:layout_height="36dp"
+                                    android:padding="4dp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/cardPlayInRandomOrder"
+                                style="@style/LinearLayoutRowAddEditItem"
+                                android:orientation="horizontal"
+                                android:paddingRight="8dp">
+
+                                <LinearLayout
+                                    style="@style/LinearLayoutRowSubAddEditItem"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        style="@style/TextViewHeaderSettingItem"
+                                        android:text="@string/play_in_random_order" />
+
+                                    <TextView
+                                        style="@style/TextViewLabelSettingItem"
+                                        android:text="@string/show_affirmation_in_random_order_while_play" />
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/imgPlayInRandomOrder"
+                                    android:layout_width="40dp"
+                                    android:layout_height="36dp"
+                                    android:padding="4dp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/cardSleepTimer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutRowAddEditItem"
+                                android:orientation="horizontal"
+                                android:paddingRight="8dp">
+
+                                <LinearLayout
+                                    style="@style/LinearLayoutRowSubAddEditItem"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        style="@style/TextViewHeaderSettingItem"
+                                        android:text="@string/sleep_timer" />
+
+                                    <TextView
+                                        style="@style/TextViewLabelSettingItem"
+                                        android:text="Stop playing automatically after specified time interval (in seconds). Set 0 to disable timer." />
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/imgSleepTimer"
+                                    android:layout_width="40dp"
+                                    android:layout_height="36dp"
+                                    android:padding="4dp"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/black" />
+
+                        <LinearLayout
+                            android:id="@+id/cardScreenControls"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/linScreenControls"
+                                style="@style/LinearLayoutRowAddEditItem"
+                                android:orientation="horizontal"
+                                android:paddingRight="8dp">
+
+                                <LinearLayout
+                                    style="@style/LinearLayoutRowSubAddEditItem"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        style="@style/TextViewHeaderSettingItem"
+                                        android:text="@string/screen_controls" />
+
+                                    <TextView
+                                        style="@style/TextViewLabelSettingItem"
+                                        android:text="@string/volume_control_and_play_pause_button_will_be_shown_during_playing" />
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/imgScreenControls"
+                                    android:layout_width="40dp"
+                                    android:layout_height="36dp"
+                                    android:padding="4dp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:background="@color/black" />
+
+                            <LinearLayout
+                                android:id="@+id/linShowDownloadButton"
+                                style="@style/LinearLayoutRowAddEditItem"
+                                android:orientation="horizontal"
+                                android:paddingRight="8dp">
+
+                                <LinearLayout
+                                    style="@style/LinearLayoutRowSubAddEditItem"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        style="@style/TextViewHeaderSettingItem"
+                                        android:text="@string/show_download_button" />
+
+                                    <TextView
+                                        style="@style/TextViewLabelSettingItem"
+                                        android:text="Shows download affirmation button while playing" />
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/imgShowDownloadButton"
+                                    android:layout_width="40dp"
+                                    android:layout_height="36dp"
+                                    android:padding="4dp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

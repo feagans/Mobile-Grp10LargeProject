@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "166105870518",
+    "firebase_url": "https://my-life-goals-d4af0.firebaseio.com",
+    "project_id": "my-life-goals-d4af0",
+    "storage_bucket": "my-life-goals-d4af0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166105870518:android:9a050405c48ba79e77f617",
+        "android_client_info": {
+          "package_name": "com.test.mylifegoale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166105870518-od82jhv1ti3m0em9u0gc4kl45eloqu85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdEdh8x_0FpWslCQ8qahQQsQox1-SWBCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166105870518-od82jhv1ti3m0em9u0gc4kl45eloqu85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

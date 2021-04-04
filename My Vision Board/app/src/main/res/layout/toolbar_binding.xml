@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:bind="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="ToolbarModel"
+            type="com.test.mylifegoale.model.toolbar.ToolbarModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/linMainTool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center"
+                android:background="@color/actionbar"
+                android:contentInsetStart="0dp"
+                android:contentInsetLeft="0dp"
+                android:contentInsetEnd="0dp"
+                android:contentInsetRight="0dp"
+                android:gravity="center"
+                android:padding="0dp"
+                android:theme="@style/toolbarStyle"
+                app:contentInsetEnd="0dp"
+                app:contentInsetStart="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imgDrawer"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:src="@drawable/menu"
+                            android:visibility="@{ToolbarModel.isDrawerOpen ? View.VISIBLE : View.GONE}"
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/imgBack"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="@dimen/_7sdp"
+                            android:layout_marginRight="4dp"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:src="@drawable/back"
+                            android:visibility="@{ToolbarModel.isBack ? View.VISIBLE : View.GONE}"
+
+                            app:tint="@color/white" />
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="64dp"
+                            android:layout_height="32dp"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:gravity="left">
+
+                        <TextView
+                            android:id="@+id/textTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/semibold"
+                            android:singleLine="true"
+                            android:text="@{ToolbarModel.title}"
+                            android:textColor="@color/white"
+                            android:textSize="24dp" />
+
+                        <Spinner
+                            android:id="@+id/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/regular"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_arrow_drop_down_black"
+                            android:visibility="@{ToolbarModel.isSpinnerMenu ? View.VISIBLE : View.GONE}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ProgressBar
+                            android:id="@+id/progressbar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:indeterminateDrawable="@drawable/progressbar_custom_small"
+                            android:padding="4dp"
+                            android:visibility="@{ToolbarModel.isProgressMenu ? View.VISIBLE : View.GONE}"
+                            />
+
+                        <ImageView
+                            android:id="@+id/imgAdd"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_margin="4dp"
+                            android:padding="8dp"
+                            android:src="@drawable/add"
+                            android:visibility="@{ToolbarModel.isAdd ? View.VISIBLE : View.GONE}"
+                            />
+
+                        <ImageView
+                            android:id="@+id/imgDelete"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_margin="4dp"
+                            android:padding="8dp"
+                            android:src="@drawable/delete"
+                            android:visibility="@{ToolbarModel.isDelete ? View.VISIBLE : View.GONE}"
+                            />
+
+                        <ImageView
+                            android:id="@+id/imgOther"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_margin="4dp"
+                            android:padding="8dp"
+                            android:src="@drawable/add"
+                            android:visibility="@{ToolbarModel.isOtherMenu ? View.VISIBLE : View.GONE}"
+                            />
+
+                        <EditText
+                            android:id="@+id/etOther"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/et_selector_bottom_line"
+                            android:digits="0123456789"
+                            android:ellipsize="end"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/regular"
+                            android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                            android:imeOptions="actionDone"
+                            android:inputType="none|text|textCapCharacters|textCapWords|textUri|number|numberSigned|numberDecimal|numberPassword|phone"
+                            android:lines="1"
+                            android:maxLines="1"
+                            android:padding="4dp"
+                            android:singleLine="true"
+                            android:visibility="@{ToolbarModel.isOtherEt ? View.VISIBLE : View.GONE}"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/textColorLight" />
+
+                        <androidx.appcompat.widget.SearchView
+                            android:id="@+id/search"
+                            style="@style/AppTheme.SearchView"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:visibility="@{ToolbarModel.isSearchMenu ? View.VISIBLE : View.GONE}"
+                            app:queryHint="Search here" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/toolbar_shadow"
+            android:visibility="gone" />
+    </LinearLayout>
+</layout>
