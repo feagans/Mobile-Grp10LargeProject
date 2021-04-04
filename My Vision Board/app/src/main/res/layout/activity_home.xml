@@ -97,7 +97,7 @@
                                     android:layout_gravity="center"
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/_120sdp"
-                                    
+
                                     android:gravity="center_vertical"
                                     android:orientation="vertical">
 
@@ -153,7 +153,8 @@
                                         android:layout_gravity="center_horizontal"
                                         android:background="@drawable/categoryimagebg"
                                         android:padding="@dimen/_20sdp"
-                                        android:src="@drawable/home_journal" />
+                                        android:src="@drawable/home_journal"
+                                        android:contentDescription="TODO" />
 
                                     <TextView
                                         style="@style/TextViewMain"

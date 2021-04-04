@@ -111,7 +111,9 @@ public class HomeActivity extends BaseActivity {
             startActivity(new Intent(this, VisionActivity.class));
         } /*else if (id == R.id.cvshare) {
             AppConstants.shareApp(this);
-        } *//*else if (id == R.id.cvrate) {
+        } */
+          //omitted button
+          /*else if (id == R.id.cvrate) {
             AppConstants.showRattingDialog(this, Constants.RATTING_BAR_TITLE);
         }*/
     }
