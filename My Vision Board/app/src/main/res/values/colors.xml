@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#5907A9</color>
-    <color name="colorPrimaryDark">#500660</color>
+    <color name="colorPrimary">#02438E</color>
+    <color name="colorPrimaryDark">#02518E</color>
     <color name="colorAccent">#76D0DE</color>
     <color name="colorBlack">#000000</color>
     <color name="colorBlackAlpha">#4d000000</color>
@@ -10,26 +10,22 @@
     <color name="actionbar">@color/colorPrimary</color>
     <color name="addMobBorder">#7f7f7f</color>
     <color name="addMobTextColor">#1a73e8</color>
-    <color name="background">#500660</color>
+    <color name="background">#17a2b8</color>
     <color name="backgroundLight">#478ab1</color>
     <color name="black">#000000</color>
     <color name="borderColor">#7f7f7f</color>
-    //f5f5f5
     <color name="browser_actions_bg_grey">#f5f5f5</color>
     <color name="browser_actions_divider_color">#1e000000</color>
     <color name="browser_actions_text_color">#de000000</color>
     <color name="browser_actions_title_color">#646464</color>
     <color name="colorRipple">@color/backgroundLight</color>
-    //ffffff
     <color name="colorWhite">#ffffff</color>
-    //efeeee
     <color name="disableColor">#efeeee</color>
     <color name="grey_200">#eeeeee</color>
     <color name="grey_400">#bdbdbd</color>
     <color name="grey_500">#9e9e9e</color>
     <color name="progress_gray">#808080</color>
     <color name="progress_green">#659b5c</color>
-    //d1d1d1
     <color name="rate_us_bg">#d1d1d1</color>
     <color name="ratingBarColor">#f9d71c</color>
     <color name="red">#c91919</color>
@@ -38,6 +34,5 @@
     <color name="textColorLight">#808080</color>
     <color name="textColorRegular">#3d3d3d</color>
     <color name="transparent">#00000000</color>
-    //ffffff
     <color name="white">#ffffff</color>
 </resources>
