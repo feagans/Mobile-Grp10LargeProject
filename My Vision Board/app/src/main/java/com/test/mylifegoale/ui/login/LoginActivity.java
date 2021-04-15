@@ -96,11 +96,11 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
                     startActivity(intent);
                     updateUiWithUser(loginResult.getSuccess());
+                    // Complete and destroy login activity once successful
+                    finish();
                 }
 //                setResult(Activity.RESULT_OK);
 
-                // Complete and destroy login activity once successful
-                finish();
             }
         });
 
@@ -184,6 +184,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
+        Log.d("taggy", "ShowloginFail!!");
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
