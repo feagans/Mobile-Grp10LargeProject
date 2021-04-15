@@ -1,25 +1,60 @@
 package com.test.mylifegoale.data;
-import java.io.IOException;
-import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public final class APIService {
-    public static final String API_URL = "http://letsbuckit.herokuapp.com/api/";
 
+    public static class Urgh {
+        public final String test;
+
+        public Urgh(String test) {
+            this.test = test;
+        }
+    }
+
+    /**
+     * {
+     *   "id": "605faf43596b7242de2c8c39",
+     *   "firstName": "Trevor",
+     *   "lastName": "Jones",
+     *   "email": "trev@mail.com",
+     *   "isVerified": true,
+     *   "jwt": {
+     *     "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MDVmYWY0MzU5NmI3MjQyZGUyYzhjMzkiLCJmaXJzdE5hbWUiOiJUcmV2b3IiLCJsYXN0TmFtZSI6IkpvbmVzIiwiaWF0IjoxNjE4NDU5NzExfQ.NjXgbMziIyoQwRRRPiTBQTLjQ6PTDSFS5ik-x5QCKYA"
+     *   },
+     *   "error": ""
+     * }*/
     public static class LoginResponse {
+        public final String id;
+        public final String firstName;
+        public final String email;
+        public final Boolean isVerified;
+        public final JWTToken jwt;
+        public final String error;
+
+        public LoginResponse(String id, String firstName, String email, Boolean isVerified, JWTToken jwt, String error) {
+            this.id = id;
+            this.firstName = firstName;
+            this.email = email;
+            this.isVerified = isVerified;
+            this.jwt = jwt;
+            this.error = error;
+        }
+    }
+
+    public static class JWTToken {
         public final String accessToken;
 
-        public LoginResponse(String accessToken) {
+        public JWTToken(String accessToken) {
             this.accessToken = accessToken;
         }
     }
+
+
     public static class LoginRequest {
         public final String login;
         public final String password;
@@ -29,18 +64,23 @@ public final class APIService {
         }
     }
     public interface API {
-        @POST("/login")
+        @GET("/test")
+        Call<Urgh> test();
+
+        @POST("/api/login")
         Call<LoginResponse> login(
                 @Body LoginRequest user
         );
-//
-//        @POST("/register")
-//        Call<LoginResponse> register(
-//                @Path("firstName") String firstName,
-//                @Path("lastName") String lastName,
-//                @Path("email") String email,
-//                @Path("password") String password
-//        );
+
+        // @TODO prefix with /api
+        @POST("/register")
+        // @TODO replace @Path with @Body and make a class for each body
+        Call<LoginResponse> register(
+                @Path("firstName") String firstName,
+                @Path("lastName") String lastName,
+                @Path("email") String email,
+                @Path("password") String password
+        );
 //
 //        //keep using <LoginResponse> ?
 //        @POST("fr-request")

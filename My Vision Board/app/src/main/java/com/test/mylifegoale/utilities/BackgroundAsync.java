@@ -3,8 +3,17 @@ package com.test.mylifegoale.utilities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.test.mylifegoale.MyApplication;
+import com.test.mylifegoale.data.APIService;
 import com.test.mylifegoale.itemClick.OnAsyncBackground;
+
+import java.io.IOException;
+
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BackgroundAsync extends AsyncTask {
     private String defaultDialogMessage = "Please wait ...";
@@ -18,6 +27,8 @@ public class BackgroundAsync extends AsyncTask {
         this.onAsyncBackground = onAsyncBackground2;
         this.dialogMessage = str;
         this.dialog = new ProgressDialog(context2);
+
+        // Log.d(TAG, result.accessToken);
     }
 
 
