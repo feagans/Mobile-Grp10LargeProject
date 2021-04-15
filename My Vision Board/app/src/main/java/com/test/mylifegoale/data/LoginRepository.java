@@ -1,6 +1,10 @@
 package com.test.mylifegoale.data;
 
+import android.content.Intent;
+
 import com.test.mylifegoale.data.model.LoggedInUser;
+import com.test.mylifegoale.ui.login.LoginActivity;
+import com.test.mylifegoale.view.SplashActivity;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -33,6 +37,7 @@ public class LoginRepository {
     }
 
     public void logout() {
+
         user = null;
         dataSource.logout();
     }

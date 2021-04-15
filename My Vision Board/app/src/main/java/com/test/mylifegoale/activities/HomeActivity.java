@@ -32,6 +32,7 @@ import com.test.mylifegoale.databinding.ActivityHomeBinding;
 import com.test.mylifegoale.itemClick.RecyclerItemClick;
 import com.test.mylifegoale.model.AffirmationRowModel;
 import com.test.mylifegoale.model.drawer.DrawerRowModel;
+import com.test.mylifegoale.ui.login.LoginActivity;
 import com.test.mylifegoale.utilities.AdConstants;
 import com.test.mylifegoale.utilities.AppConstants;
 import com.test.mylifegoale.utilities.AppPref;
@@ -132,6 +133,7 @@ public class HomeActivity extends BaseActivity {
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleRatting), R.drawable.ic_rate_us, 2, 2, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleShare), R.drawable.ic_share, 2, 4, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitlePrivacyPolicy), R.drawable.ic_privacy_policy, 2, 7, false));
+        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleLogout), R.drawable.ic_delete, 2, 8, false));
     }
 
     private void setDrawerRecycler() {
@@ -220,6 +222,15 @@ public class HomeActivity extends BaseActivity {
                 return;
             case 7:
                 uriparse(AdConstants.STR_PRIVACY_URI);
+                openCloseDrawer(false);
+                return;
+
+            case 8:
+                // Clear stored user info
+
+                // Go back to login page
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
                 openCloseDrawer(false);
                 return;
 

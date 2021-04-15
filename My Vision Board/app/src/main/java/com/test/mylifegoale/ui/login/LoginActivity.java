@@ -100,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }
 //                setResult(Activity.RESULT_OK);
-
             }
         });
 
