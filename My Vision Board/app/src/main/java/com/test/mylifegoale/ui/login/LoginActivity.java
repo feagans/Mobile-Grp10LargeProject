@@ -45,13 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     public APIService.API API;
     public APIService.LoginResponse user;
     private LoginViewModel loginViewModel;
-    private int statusCode;
     boolean validUser = false;
-
-    // Return API status code
-    public int status() {
-        return statusCode;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -133,9 +127,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                Log.d("taggy", "EDITACTION!!");
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(validUser);
                 }
                 return false;
             }
@@ -158,7 +150,6 @@ public class LoginActivity extends AppCompatActivity {
                             if (response.code() == 200) {
                                 validUser = true;
                                 Log.d("taggy", "VALID!!");
-
                             }
 
                             // Invalid credentials status code = 204
@@ -167,6 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // Show error message
                             }
 
+                            loginViewModel.login(validUser);
                         }
 
                         // Request failed
