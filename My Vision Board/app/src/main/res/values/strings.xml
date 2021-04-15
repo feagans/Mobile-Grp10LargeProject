@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Buckit</string>
+    <string name="app_name">Buck-it</string>
 
     <string name="strAdsAppId">ca-app-pub-3940256099942544~3347511713</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
@@ -186,7 +186,8 @@
     <string name="volume_control_and_play_pause_button_will_be_shown_during_playing">Volume control and play pause button will be shown while playing</string>
     <string name="yes">Yes</string>
     <string name="ok">Ok</string>
-    <string name="title_activity_login">LoginActivity</string>
+    //changed from LoginActivity to Buck-It
+    <string name="title_activity_login">Buck-It</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
