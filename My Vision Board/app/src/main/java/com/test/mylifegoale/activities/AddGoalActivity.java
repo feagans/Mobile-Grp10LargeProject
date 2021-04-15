@@ -1,5 +1,6 @@
 package com.test.mylifegoale.activities;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -163,6 +164,7 @@ public class AddGoalActivity extends BaseActivity {
         }
     }
 
+    @SuppressLint("ResourceType")
     public void callDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
         final AddCategoryDialogBinding addCategoryDialogBinding = (AddCategoryDialogBinding) DataBindingUtil.inflate(getLayoutInflater(), R.layout.add_category_dialog, (ViewGroup) null, false);
@@ -242,7 +244,7 @@ public class AddGoalActivity extends BaseActivity {
 
     private boolean validateEndDate() {
         if (this.visionModel.getName() != null && this.visionModel.getName().isEmpty()) {
-            Toast.makeText(this.context, getString(R.string.title_reguire), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.context, getString(R.string.title_require), Toast.LENGTH_SHORT).show();
             return false;
          //Omitted as android wont let the app upload pictures from this activity
         }/* else if (this.visionModel.getVisionProfile() == null || this.visionModel.getVisionProfile().isEmpty()) {

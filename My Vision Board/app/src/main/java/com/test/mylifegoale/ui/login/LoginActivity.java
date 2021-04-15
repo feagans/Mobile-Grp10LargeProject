@@ -1,16 +1,14 @@
 package com.test.mylifegoale.ui.login;
 
 import android.app.Activity;
-
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -22,21 +20,53 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.test.mylifegoale.MyApplication;
 import com.test.mylifegoale.R;
+import android.util.Log;
+import android.app.Application;
+import android.widget.EditText;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import com.test.mylifegoale.data.APIError;
+import com.test.mylifegoale.data.APIService;
 import com.test.mylifegoale.ui.login.LoginViewModel;
 import com.test.mylifegoale.ui.login.LoginViewModelFactory;
+import com.test.mylifegoale.view.SplashActivity;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private static LoginActivity mInstance;
+    public Retrofit retrofit;
+    public APIService.API API;
+    public APIService.LoginResponse user;
     private LoginViewModel loginViewModel;
+    private int statusCode;
+    boolean validUser = false;
+
+    // Return API status code
+    public int status() {
+        return statusCode;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // API
         super.onCreate(savedInstanceState);
+        mInstance = this;
+        this.retrofit = new Retrofit.Builder()
+                .baseUrl("https://letsbuckit.herokuapp.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        this.API = retrofit.create(APIService.API.class);
+
         setContentView(R.layout.activity_login);
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
-
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
@@ -65,15 +95,17 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 loadingProgressBar.setVisibility(View.GONE);
-                if (loginResult.getError() != null) {
+                if (!validUser) {
                     showLoginFailed(loginResult.getError());
                 }
-                if (loginResult.getSuccess() != null) {
+                if (validUser) {
+                    Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
+                    startActivity(intent);
                     updateUiWithUser(loginResult.getSuccess());
                 }
-                setResult(Activity.RESULT_OK);
+//                setResult(Activity.RESULT_OK);
 
-                //Complete and destroy login activity once successful
+                // Complete and destroy login activity once successful
                 finish();
             }
         });
@@ -101,20 +133,54 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                Log.d("taggy", "EDITACTION!!");
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
+                    loginViewModel.login(validUser);
                 }
                 return false;
             }
         });
 
+        // On login click, verify user's credentials using API.
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("taggy", "ONCLICK!!");
+                try {
+                    APIService.LoginRequest user = new APIService.LoginRequest(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+                    API.login(user).enqueue(new Callback<APIService.LoginResponse>() {
+                        @Override
+                        public void onResponse(Call<APIService.LoginResponse> call, Response<APIService.LoginResponse> response) {
+                            Log.d("MainActivity", "Status Code = " + response.code());
+                            LoginActivity.getInstance().user = response.body();
+
+                            // Valid credentials
+                            if (response.code() == 200) {
+                                validUser = true;
+                                Log.d("taggy", "VALID!!");
+
+                            }
+
+                            // Invalid credentials status code = 204
+                            else {
+                                Log.d("TAGGYTAG", "FAILED!!");
+                                // Show error message
+                            }
+
+                        }
+
+                        // Request failed
+                        @Override
+                        public void onFailure(Call<APIService.LoginResponse> call, Throwable t) {
+                            Log.d("TAGGYTAG", "failing!");
+
+                        }
+                    });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
             }
         });
     }
@@ -127,5 +193,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    public static synchronized LoginActivity getInstance() {
+        LoginActivity loginActivity;
+        synchronized (LoginActivity.class) {
+            loginActivity = mInstance;
+        }
+        return loginActivity;
     }
 }

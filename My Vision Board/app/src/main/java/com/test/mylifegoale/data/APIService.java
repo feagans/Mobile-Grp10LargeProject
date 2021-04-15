@@ -16,29 +16,19 @@ public final class APIService {
         }
     }
 
-    /**
-     * {
-     *   "id": "605faf43596b7242de2c8c39",
-     *   "firstName": "Trevor",
-     *   "lastName": "Jones",
-     *   "email": "trev@mail.com",
-     *   "isVerified": true,
-     *   "jwt": {
-     *     "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MDVmYWY0MzU5NmI3MjQyZGUyYzhjMzkiLCJmaXJzdE5hbWUiOiJUcmV2b3IiLCJsYXN0TmFtZSI6IkpvbmVzIiwiaWF0IjoxNjE4NDU5NzExfQ.NjXgbMziIyoQwRRRPiTBQTLjQ6PTDSFS5ik-x5QCKYA"
-     *   },
-     *   "error": ""
-     * }*/
     public static class LoginResponse {
         public final String id;
         public final String firstName;
+        public final String lastName;
         public final String email;
         public final Boolean isVerified;
         public final JWTToken jwt;
         public final String error;
 
-        public LoginResponse(String id, String firstName, String email, Boolean isVerified, JWTToken jwt, String error) {
+        public LoginResponse(String id, String firstName, String lastName, String email, Boolean isVerified, JWTToken jwt, String error) {
             this.id = id;
             this.firstName = firstName;
+            this.lastName = lastName;
             this.email = email;
             this.isVerified = isVerified;
             this.jwt = jwt;
@@ -74,12 +64,11 @@ public final class APIService {
 
         // @TODO prefix with /api
         @POST("/register")
-        // @TODO replace @Path with @Body and make a class for each body
         Call<LoginResponse> register(
-                @Path("firstName") String firstName,
-                @Path("lastName") String lastName,
-                @Path("email") String email,
-                @Path("password") String password
+//                @Body("firstName") String firstName,
+//                @Body("lastName") String lastName,
+//                @Body("email") String email,
+//                @Body("password") String password
         );
 //
 //        //keep using <LoginResponse> ?
@@ -161,38 +150,5 @@ public final class APIService {
 //                @Path("userID") String userID,
 //                @Path("completed") String completed
 //        );
-//
-//        @POST("search-bucket")
-//        Call<LoginResponse> searchBucket(
-//                @Path("userId") String userId,
-//                @Path("search") String search
-//        );
-//
-//        // Shouldnt it be UserID?
-//        /*@POST("search-todo")
-//        @Path("userId") String userId,
-//        @Path("search") String search
-//		);*/
     }
-
-//    public static void main(String... args) throws IOException {
-//        // Create a very simple REST adapter which points the GitHub API.
-//        Retrofit retrofit =
-//                new Retrofit.Builder()
-//                        .baseUrl(API_URL)
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//        // Create an instance of our GitHub API interface.
-//        GitHub github = retrofit.create(GitHub.class);
-//
-//        // Create a call instance for looking up Retrofit contributors.
-//        Call<List<Contributor>> call = github.contributors("square", "retrofit");
-//
-//        // Fetch and print a list of the contributors to the library.
-//        List<Contributor> contributors = call.execute().body();
-//        for (Contributor contributor : contributors) {
-//            System.out.println(contributor.login + " (" + contributor.contributions + ")");
-//        }
-//    }
 }

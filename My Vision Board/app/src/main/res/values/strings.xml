@@ -175,7 +175,7 @@
     <string name="take_backup_of_data">Take backup of data</string>
     <string name="time_of_reminder">Time of Reminder</string>
     <string name="title_note">Title</string>
-    <string name="title_reguire">Tilte must be require</string>
+    <string name="title_require">Title must be require</string>
     <string name="title_settings_dialog">Permissions Required</string>
     <string name="uncheck_all">UnCheck All</string>
     <string name="vision_board">Bucket List</string>
@@ -187,11 +187,13 @@
     <string name="ok">Ok</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
+    <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
+    <string name="empty_username">Please enter a username</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be at least 6 characters</string>
     <string name="login_failed">"Login failed"</string>
 </resources>
