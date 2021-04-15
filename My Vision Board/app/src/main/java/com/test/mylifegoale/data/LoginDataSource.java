@@ -1,5 +1,6 @@
 package com.test.mylifegoale.data;
 
+import com.test.mylifegoale.MyApplication;
 import com.test.mylifegoale.data.model.LoggedInUser;
 
 import java.io.IOException;
@@ -12,7 +13,8 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(String username, String password) {
 
         try {
-            // TODO: handle loggedInUser authentication
+            //MyApplication.getInstance().API.login(username, password);
+
             LoggedInUser fakeUser =
                     new LoggedInUser(
                             java.util.UUID.randomUUID().toString(),
