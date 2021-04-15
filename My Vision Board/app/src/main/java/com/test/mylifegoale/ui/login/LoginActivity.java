@@ -10,7 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -20,23 +22,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.test.mylifegoale.MyApplication;
 import com.test.mylifegoale.R;
 import android.util.Log;
-import android.app.Application;
-import android.widget.EditText;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import com.test.mylifegoale.data.APIError;
 import com.test.mylifegoale.data.APIService;
-import com.test.mylifegoale.ui.login.LoginViewModel;
-import com.test.mylifegoale.ui.login.LoginViewModelFactory;
 import com.test.mylifegoale.view.SplashActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -95,11 +90,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (validUser) {
                     Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
                     startActivity(intent);
-                    updateUiWithUser(loginResult.getSuccess());
                     // Complete and destroy login activity once successful
                     finish();
                 }
-//                setResult(Activity.RESULT_OK);
+                 setResult(Activity.RESULT_OK);
             }
         });
 
@@ -127,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    loginViewModel.login(validUser);
                 }
                 return false;
             }
@@ -176,15 +171,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-    }
-
     private void showLoginFailed(@StringRes Integer errorString) {
         Log.d("taggy", "ShowloginFail!!");
-        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+        Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<font color='#fc0303' ><b>" + "Invalid Credentials" + "</b></font>"), Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.show();
     }
 
     public static synchronized LoginActivity getInstance() {
