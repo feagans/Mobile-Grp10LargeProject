@@ -32,6 +32,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.test.mylifegoale.data.APIService;
+import com.test.mylifegoale.data.model.LoggedInUser;
 import com.test.mylifegoale.view.SplashActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -140,12 +141,20 @@ public class LoginActivity extends AppCompatActivity {
                             // Valid credentials
                             if (response.code() == 200) {
                                 validUser = true;
-                                Log.d("taggy", "VALID!!");
+                                Log.d("taggy", "VALID USER!!");
+
+                                // If user is valid store info
+                                APIService.LoginResponse userData = response.body();
+                                LoggedInUser.setId(userData.id);
+                                LoggedInUser.setUserFullName(userData.firstName+" "+userData.lastName);
+                                LoggedInUser.setUserEmail(userData.email);
+                                LoggedInUser.setUserVerifiedStatus(userData.isVerified);
+                                Log.d("taggy", userData.firstName);
                             }
 
                             // Invalid credentials status code = 204
                             else {
-                                Log.d("TAGGYTAG", "FAILED!!");
+                                Log.d("TAGGYTAG", "FAILED USER!!");
                                 // Show error message
                                 showLoginFailed();
                             }
@@ -156,8 +165,7 @@ public class LoginActivity extends AppCompatActivity {
                         // Request failed
                         @Override
                         public void onFailure(Call<APIService.LoginResponse> call, Throwable t) {
-                            Log.d("TAGGYTAG", "failing!");
-
+                            Log.d("TAGGYTAG", "api ['pfailing!");
                         }
                     });
 

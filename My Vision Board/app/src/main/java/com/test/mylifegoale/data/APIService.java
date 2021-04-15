@@ -8,14 +8,6 @@ import retrofit2.http.Path;
 
 public final class APIService {
 
-    public static class Urgh {
-        public final String test;
-
-        public Urgh(String test) {
-            this.test = test;
-        }
-    }
-
     public static class LoginResponse {
         public final String id;
         public final String firstName;
@@ -54,8 +46,6 @@ public final class APIService {
         }
     }
     public interface API {
-        @GET("/test")
-        Call<Urgh> test();
 
         @POST("/api/login")
         Call<LoginResponse> login(
@@ -63,15 +53,16 @@ public final class APIService {
         );
 
         // @TODO prefix with /api
-        @POST("/api/register")
-        Call<LoginResponse> register(
+//        @POST("/api/register")
+//        Call<LoginResponse> register(
+//        @POST("/register")
+//        Call<LoginResponse> register(
 //                @Body("firstName") String firstName,
 //                @Body("lastName") String lastName,
 //                @Body("email") String email,
 //                @Body("password") String password
-          );
+//          );
 //
-//        //keep using <LoginResponse> ?
 //        @POST("/api/fr-request")
 //        Call<LoginResponse> performFriendRequest(
 //                @Path("senderId") String senderId,

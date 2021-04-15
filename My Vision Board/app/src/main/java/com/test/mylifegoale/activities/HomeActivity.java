@@ -28,6 +28,7 @@ import com.test.mylifegoale.R;
 import com.test.mylifegoale.adapters.DrawerAdapter;
 import com.test.mylifegoale.base.BaseActivity;
 import com.test.mylifegoale.base.roomDb.AppDatabase;
+import com.test.mylifegoale.data.model.LoggedInUser;
 import com.test.mylifegoale.databinding.ActivityHomeBinding;
 import com.test.mylifegoale.itemClick.RecyclerItemClick;
 import com.test.mylifegoale.model.AffirmationRowModel;
@@ -52,6 +53,7 @@ public class HomeActivity extends BaseActivity {
     ActionBarDrawerToggle toggle;
 
     public void setBinding() {
+        Log.d("TAGGYTAG", LoggedInUser.getUserFullName());
         this.binding = (ActivityHomeBinding) DataBindingUtil.setContentView(this, R.layout.activity_home);
         LoadAd();
         AdConstants.bannerad(this.binding.llads, this);

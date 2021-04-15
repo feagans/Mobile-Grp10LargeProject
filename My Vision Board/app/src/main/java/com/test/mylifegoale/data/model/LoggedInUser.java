@@ -1,23 +1,24 @@
 package com.test.mylifegoale.data.model;
 
-/**
- * Data class that captures user information for logged in users retrieved from LoginRepository
- */
+import com.google.android.gms.common.data.DataHolder;
+import com.test.mylifegoale.data.APIService;
+
 public class LoggedInUser {
+    private static String id;
+    private static String fullName;
+    private static String email;
+    private static Boolean isVerified;
 
-    private String userId;
-    private String displayName;
+    public static void setId(String id) { LoggedInUser.id = id;}
+    public static String getUserId() { return id; }
 
-    public LoggedInUser(String userId, String displayName) {
-        this.userId = userId;
-        this.displayName = displayName;
-    }
+    public static void setUserFullName(String fullName) { LoggedInUser.fullName = fullName;}
+    public static String getUserFullName() { return fullName; }
 
-    public String getUserId() {
-        return userId;
-    }
 
-    public String getDisplayName() {
-        return displayName;
-    }
+    public static void setUserEmail(String email) { LoggedInUser.email = email;}
+    public static String getUserEmail() { return email; }
+
+    public static void setUserVerifiedStatus(Boolean isVerified) { LoggedInUser.isVerified = isVerified;}
+    public static Boolean getUserVerifiedStatus() { return isVerified; }
 }
