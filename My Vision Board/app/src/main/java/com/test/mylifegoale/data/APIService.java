@@ -69,51 +69,51 @@ public final class APIService {
 //                @Body("lastName") String lastName,
 //                @Body("email") String email,
 //                @Body("password") String password
-        );
+          );
 //
 //        //keep using <LoginResponse> ?
-//        @POST("fr-request")
+//        @POST("/api/fr-request")
 //        Call<LoginResponse> performFriendRequest(
 //                @Path("senderId") String senderId,
 //                @Path("login") String username
 //        );
 //
-//        @POST("fr-response")
+//        @POST("/api/fr-response")
 //        Call<LoginResponse> allowFriendRequest(
 //                @Path("userID") String userID,
 //                @Path("friendID") String friendID,
 //                @Path("status")String status
 //        );
 //
-//        @POST("fr-remove")
+//        @POST("/api/fr-remove")
 //        Call<LoginResponse> removeFriend(
 //                @Path("userId") String userId,
 //                @Path("friendId") String friendId
 //        );
 //
-//        @POST("fr-allfriends")
+//        @POST("/api/fr-allfriends")
 //        Call<LoginResponse> showAllFriends(
 //                @Path("userID") String userID
 //        );
 //
-//        @POST("add-bucket")
+//        @POST("/api/add-bucket")
 //        Call<LoginResponse> addItemBucket(
 //                @Path("userID") String userID,
 //                @Path("itemTitle") String itemTitle,
 //                @Path("caption") String caption
 //        );
 //
-//        @POST("all-buckets")
+//        @POST("/api/all-buckets")
 //        Call<LoginResponse> showAllbucket(
 //                @Path("userID") String userID
 //        );
 //
-//        @POST("delete-bucket")
+//        @POST("/api/delete-bucket")
 //        Call<LoginResponse> deleteItemBucket(
 //                @Path("ID") String ID
 //        );
 //
-//        @POST("edit-bucket")
+//        @POST("/api/edit-bucket")
 //        Call<LoginResponse> editItemBucket(
 //                @Path("ID") String ID,
 //                @Path("itemTitle") String ItemTile,
@@ -121,30 +121,30 @@ public final class APIService {
 //                @Path("completed") String completed
 //        );
 //
-//        @POST("add-todo")
+//        @POST("/api/add-todo")
 //        Call<LoginResponse> addItemTodo(
 //                @Path("userID") String userID,
 //                @Path("itemTitle") String itemTitle
 //        );
 //
-//        @POST("all-todo")
+//        @POST("/api/all-todo")
 //        Call<LoginResponse> showAllTodo(
 //                @Path("userID") String userID
 //        );
 //
-//        @POST("delete-todo")
+//        @POST("/api/delete-todo")
 //        Call<LoginResponse> deleteItemTodo(
 //                @Path("ID") String ID
 //        );
 //
-//        @POST("edit-todo")
+//        @POST("/api/edit-todo")
 //        Call<LoginResponse> editItemTodo(
 //                @Path("ID") String ID,
 //                @Path("itemTitle") String itemTitle,
 //                @Path("completed") String completed
 //        );
 //
-//        @POST("mark-completed-todo")
+//        @POST("/api/mark-completed-todo")
 //        Call<LoginResponse> completedTodo(
 //                @Path("itemTitle") String itemTitle,
 //                @Path("userID") String userID,
