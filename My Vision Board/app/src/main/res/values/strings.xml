@@ -58,8 +58,8 @@
     <string name="drawerTitlePrivacyPolicy">Privacy Policy</string>
     <string name="drawerTitleLogout">Logout</string>
     <string name="drawerTitleRatting">Rate Us</string>
-    <string name="drawerTitleSetting">Setting</string>
-    <string name="drawerTitleShare">Share with friends</string>
+    <string name="drawerTitleSetting">Settings</string>
+    <string name="drawerTitleShare">Share App with Friends</string>
     <string name="drive_backups">Drive backups</string>
     <string name="edit_folder">Edit Folder</string>
     <string name="edit_note">Note</string>
