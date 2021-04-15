@@ -63,7 +63,7 @@ public final class APIService {
         );
 
         // @TODO prefix with /api
-        @POST("/register")
+        @POST("/api/register")
         Call<LoginResponse> register(
 //                @Body("firstName") String firstName,
 //                @Body("lastName") String lastName,
