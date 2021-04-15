@@ -89,32 +89,32 @@ public class AddGoalActivity extends BaseActivity {
             getPos();
             setVisionStatus(this.visionModel.isPending());
         }
-        this.binding.categorySpinner.setAdapter(this.spinnerAdapter);
-        this.binding.categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long j) {
-                if (i == 0) {
-                    callDialog();
-                    return;
-                }
-                visionModel.setCategory(categoryModelArrayList.get(i).getId());
-                visionModel.setCatTitle(categoryModelArrayList.get(i).getTitle());
-            }
-        });
-        this.binding.categorySpinner.setSelection(this.selectedPos);
-        this.binding.goalDescription.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (view.getId() == R.id.goalDescription) {
-                    view.getParent().requestDisallowInterceptTouchEvent(true);
-                    if ((motionEvent.getAction() & 255) == 1) {
-                        view.getParent().requestDisallowInterceptTouchEvent(false);
-                    }
-                }
-                return false;
-            }
-        });
+        //this.binding.categorySpinner.setAdapter(this.spinnerAdapter);
+//        this.binding.categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//            }
+//
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long j) {
+//                if (i == 0) {
+//                    callDialog();
+//                    return;
+//                }
+//                visionModel.setCategory(categoryModelArrayList.get(i).getId());
+//                visionModel.setCatTitle(categoryModelArrayList.get(i).getTitle());
+//            }
+//        });
+//        this.binding.categorySpinner.setSelection(this.selectedPos);
+//        this.binding.goalDescription.setOnTouchListener(new View.OnTouchListener() {
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                if (view.getId() == R.id.goalDescription) {
+//                    view.getParent().requestDisallowInterceptTouchEvent(true);
+//                    if ((motionEvent.getAction() & 255) == 1) {
+//                        view.getParent().requestDisallowInterceptTouchEvent(false);
+//                    }
+//                }
+//                return false;
+//            }
+//        });
 
         binding.goal.addTextChangedListener(new TextWatcher() {
             @Override
@@ -177,7 +177,8 @@ public class AddGoalActivity extends BaseActivity {
                 if (appDatabase.categoryDAO().insert(categoryModel) > 0) {
                     categoryModelArrayList.add(categoryModel);
                     spinnerAdapter.notifyDataSetChanged();
-                    binding.categorySpinner.setSelection(categoryModelArrayList.size() - 1);
+                    //Omitted as its related to the category menu//
+                    //binding.categorySpinner.setSelection(categoryModelArrayList.size() - 1);
                 }
                 create.dismiss();
             }
