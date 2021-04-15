@@ -84,9 +84,6 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 loadingProgressBar.setVisibility(View.GONE);
-                if (!validUser) {
-                    showLoginFailed(loginResult.getError());
-                }
                 if (validUser) {
                     Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
                     startActivity(intent);
@@ -150,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                             else {
                                 Log.d("TAGGYTAG", "FAILED!!");
                                 // Show error message
+                                showLoginFailed();
                             }
 
                             loginViewModel.login(validUser);
@@ -171,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void showLoginFailed(@StringRes Integer errorString) {
+    private void showLoginFailed() {
         Log.d("taggy", "ShowloginFail!!");
         Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<font color='#fc0303' ><b>" + "Invalid Credentials" + "</b></font>"), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.TOP, 0, 0);
