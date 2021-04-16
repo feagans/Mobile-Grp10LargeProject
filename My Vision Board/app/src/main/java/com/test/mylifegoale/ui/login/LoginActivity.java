@@ -142,8 +142,8 @@ public class LoginActivity extends AppCompatActivity {
                             if (response.code() == 200) {
                                 validUser = true;
                                 Log.d("taggy", "VALID USER!!");
-
                                 // If user is valid store info
+                                LoggedInUser.setUserName(usernameEditText.getText().toString());
                                 APIService.LoginResponse userData = response.body();
                                 LoggedInUser.setId(userData.id);
                                 LoggedInUser.setUserFullName(userData.firstName+" "+userData.lastName);

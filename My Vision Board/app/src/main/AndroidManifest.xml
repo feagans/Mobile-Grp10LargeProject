@@ -186,6 +186,12 @@
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".view.AccountInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name="pub.devrel.easypermissions.AppSettingsDialogHolderActivity"
             android:exported="false"
             android:label=""

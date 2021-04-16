@@ -1,5 +1,6 @@
 package com.test.mylifegoale.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -164,6 +165,7 @@ public class QuoteOfTheDayActivity extends BaseActivityBinding implements EasyPe
         }
     }
 
+    @SuppressLint("WrongConstant")
     private void shareImage(File file) {
         Intent intent = new Intent("android.intent.action.SEND");
         intent.setType("*/*");

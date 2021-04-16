@@ -39,6 +39,7 @@ import com.test.mylifegoale.utilities.AppConstants;
 import com.test.mylifegoale.utilities.AppPref;
 import com.test.mylifegoale.utilities.Constants;
 import com.test.mylifegoale.utilities.adBackScreenListener;
+import com.test.mylifegoale.view.AccountInfoActivity;
 import com.test.mylifegoale.view.AffirmationActivity;
 import com.test.mylifegoale.view.QuoteOfTheDayActivity;
 import com.test.mylifegoale.view.SettingFragment;
@@ -143,10 +144,10 @@ public class HomeActivity extends BaseActivity {
         this.drawerArrayList = new ArrayList<>();
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.dashBoard), R.drawable.ic_dashboard, 2, 16, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleAffirmation), R.drawable.ic_day_affirmation, 2, 11, false));
-//        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.download), R.drawable.drawer_ratting, 2, 12, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleShare), R.drawable.ic_share, 2, 4, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleRatting), R.drawable.ic_rate_us, 2, 2, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleSetting), R.drawable.ic_settings, 2, 6, false));
+        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerAccountInfo), R.drawable.ic_checklist, 2, 9, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleLogout), R.drawable.ic_logout_big, 2, 8, false));
     }
 
@@ -228,10 +229,16 @@ public class HomeActivity extends BaseActivity {
                 openCloseDrawer(false);
                 return;
 
+            case 9:
+                startActivity(new Intent(this, AccountInfoActivity.class));
+                openCloseDrawer(false);
+                return;
+
             case 11:
                 startActivity(new Intent(this, QuoteOfTheDayActivity.class));
                 openCloseDrawer(false);
                 return;
+
             case 12:
                 startActivity(new Intent(this, DownloadActivity.class));
                 openCloseDrawer(false);

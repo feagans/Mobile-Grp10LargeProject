@@ -4,10 +4,14 @@ import com.google.android.gms.common.data.DataHolder;
 import com.test.mylifegoale.data.APIService;
 
 public class LoggedInUser {
+    private static String userName;
     private static String id;
     private static String fullName;
     private static String email;
     private static Boolean isVerified;
+
+    public static void setUserName(String userName) { LoggedInUser.userName = userName;}
+    public static String getUserName() { return userName; }
 
     public static void setId(String id) { LoggedInUser.id = id;}
     public static String getUserId() { return id; }
