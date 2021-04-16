@@ -134,7 +134,7 @@ public class HomeActivity extends BaseActivity {
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleShare), R.drawable.ic_share, 2, 4, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleRatting), R.drawable.ic_rate_us, 2, 2, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleSetting), R.drawable.ic_settings, 2, 6, false));
-        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleLogout), R.drawable.ic_delete, 2, 8, false));
+        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleLogout), R.drawable.ic_logout, 2, 8, false));
     }
 
     private void setDrawerRecycler() {

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#02438E</color>
-    <color name="colorPrimaryDark">#02518E</color>
+    <color name="colorPrimary">@color/progress_green</color>
+    //colorPrimaryDark #02518E
+    <color name="colorPrimaryDark">@color/progress_green</color>
     <color name="colorAccent">#76D0DE</color>
     <color name="colorBlack">#000000</color>
     <color name="colorBlackAlpha">#4d000000</color>
     <color name="colorPrimaryAlpha">#9976D0DE</color>
     <color name="accent">#ec2045</color>
-    <color name="actionbar">@color/colorPrimary</color>
+    <color name="actionbar">@color/progress_green</color>
     <color name="addMobBorder">#7f7f7f</color>
     <color name="addMobTextColor">#1a73e8</color>
     <color name="background">#17a2b8</color>

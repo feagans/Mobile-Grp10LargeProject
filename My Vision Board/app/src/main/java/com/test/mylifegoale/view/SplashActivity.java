@@ -289,6 +289,7 @@ public class SplashActivity extends AppCompatActivity {
             insertAffirmation("I draw love and romance into my life with ease.", false);
             insertAffirmation("My relationships are always safe and fulfilling.", false);
         }
+
         this.rowCount = 0;
         this.folderRowModel = new FolderRowModel(AppConstants.getUniqueId(), Constants.FOLDER_IMAGE_TYPE_Family, Constants.FOLDER_IMAGE_TYPE_Family, Constants.FOLDER_COLOR_TYPE_Family, (int) this.rowIdFolder, true);
         try {
