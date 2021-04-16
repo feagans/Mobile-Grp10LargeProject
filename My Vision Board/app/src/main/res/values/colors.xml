@@ -11,7 +11,7 @@
     <color name="actionbar">@color/progress_green</color>
     <color name="addMobBorder">#7f7f7f</color>
     <color name="addMobTextColor">#1a73e8</color>
-    <color name="background">#17a2b8</color>
+    <color name="background">#659b5c</color>
     <color name="backgroundLight">#478ab1</color>
     <color name="black">#000000</color>
     <color name="borderColor">#7f7f7f</color>
