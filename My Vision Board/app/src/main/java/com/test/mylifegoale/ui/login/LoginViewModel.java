@@ -43,6 +43,7 @@ public class LoginViewModel extends ViewModel {
         if (username == null || username.equals("")){
             loginFormState.setValue(new LoginFormState(R.string.empty_username, null));
         }
+
         else if (!isPasswordValid(password)) {
             loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
         } else {
@@ -52,6 +53,7 @@ public class LoginViewModel extends ViewModel {
 
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return (password != null && !password.equals(""));
+//        return password != null && password.trim().length() > 5;
     }
 }

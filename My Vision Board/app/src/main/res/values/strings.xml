@@ -191,6 +191,6 @@
     <string name="welcome">"Welcome !"</string>
     <string name="empty_username">Please enter a username</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be at least 6 characters</string>
+    <string name="invalid_password">Please enter a password</string>
     <string name="login_failed">"Login failed"</string>
 </resources>
