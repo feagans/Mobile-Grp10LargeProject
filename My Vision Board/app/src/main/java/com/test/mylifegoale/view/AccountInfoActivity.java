@@ -136,7 +136,7 @@ public class AccountInfoActivity extends BaseActivityBinding {
 
     public void setToolbar() {
         this.toolbarModel = new ToolbarModel();
-        this.toolbarModel.setTitle(getString(R.string.quote_of_the_day));
+        this.toolbarModel.setTitle(getString(R.string.account_info));
         this.binding.includedToolbar.setToolbarModel(this.toolbarModel);
     }
 
