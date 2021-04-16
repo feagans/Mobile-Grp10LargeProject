@@ -129,12 +129,12 @@ public class HomeActivity extends BaseActivity {
     private void fillDrawerArray() {
         this.drawerArrayList = new ArrayList<>();
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.dashBoard), R.drawable.ic_dashboard, 2, 16, false));
-        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleAffirmation), R.drawable.affirmation_of_the_day, 2, 11, false));
+        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleAffirmation), R.drawable.ic_day_affirmation, 2, 11, false));
 //        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.download), R.drawable.drawer_ratting, 2, 12, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleShare), R.drawable.ic_share, 2, 4, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleRatting), R.drawable.ic_rate_us, 2, 2, false));
         this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleSetting), R.drawable.ic_settings, 2, 6, false));
-        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleLogout), R.drawable.ic_logout, 2, 8, false));
+        this.drawerArrayList.add(new DrawerRowModel(getString(R.string.drawerTitleLogout), R.drawable.ic_logout_big, 2, 8, false));
     }
 
     private void setDrawerRecycler() {
