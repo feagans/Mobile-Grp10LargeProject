@@ -52,8 +52,21 @@ public class HomeActivity extends BaseActivity {
     public ArrayList<DrawerRowModel> drawerArrayList;
     ActionBarDrawerToggle toggle;
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        welcomeUser();
+    }
+
+    public void welcomeUser() {
+//        Log.d("TAGGYTAG", LoggedInUser.getUserFullName());
+//        Log.d("TAGGYTAG", LoggedInUser.getUserId());
+        String str = "Welcome "+ LoggedInUser.getUserFullName()+"!";
+        this.binding.text.setText(str);
+    }
+
     public void setBinding() {
-        Log.d("TAGGYTAG", LoggedInUser.getUserFullName());
         this.binding = (ActivityHomeBinding) DataBindingUtil.setContentView(this, R.layout.activity_home);
         LoadAd();
         AdConstants.bannerad(this.binding.llads, this);
@@ -174,32 +187,8 @@ public class HomeActivity extends BaseActivity {
 
 
     private void setDetails() {
-        String str = Constants.DEFAULT_AFFIRMATION_TEXT;
         String formattedDate = AppConstants.getFormattedDate(System.currentTimeMillis(), Constants.DATE_FORMAT_DATE_DB);
-        if (!AppPref.getAffirmationOfTheDayDate(HomeActivity.this).equalsIgnoreCase(formattedDate)) {
-            AppPref.setAffirmationOfTheDayId(HomeActivity.this, AppDatabase.getAppDatabase(HomeActivity.this).affirmationDao().getRandomId());
-            AppPref.setAffirmationOfTheDayDate(HomeActivity.this, formattedDate);
-        }
         this.binding.text.setMovementMethod(new ScrollingMovementMethod());
-        setImage(this.binding.img);
-        this.binding.img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, QuoteOfTheDayActivity.class));
-            }
-        });
-        try {
-            AffirmationRowModel detail = AppDatabase.getAppDatabase(HomeActivity.this).affirmationDao().getDetail(AppPref.getAffirmationOfTheDayId(HomeActivity.this));
-            if (detail != null) {
-                str = detail.getQuoteText();
-            } else if (AppDatabase.getAppDatabase(HomeActivity.this).affirmationDao().getAllCount() > 0) {
-                AppPref.setAffirmationOfTheDayId(HomeActivity.this, AppDatabase.getAppDatabase(HomeActivity.this).affirmationDao().getRandomId());
-                str = AppDatabase.getAppDatabase(HomeActivity.this).affirmationDao().getDetail(AppPref.getAffirmationOfTheDayId(HomeActivity.this)).getQuoteText();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        this.binding.text.setText(str);
     }
 
     private void setImage(ImageView imageView) {
@@ -228,6 +217,10 @@ public class HomeActivity extends BaseActivity {
 
             case 8:
                 // Clear stored user info
+                LoggedInUser.setId("");
+                LoggedInUser.setUserVerifiedStatus(false);
+                LoggedInUser.setUserEmail("");
+                LoggedInUser.setUserFullName("");
 
                 // Go back to login page
                 Intent intent = new Intent(this, LoginActivity.class);

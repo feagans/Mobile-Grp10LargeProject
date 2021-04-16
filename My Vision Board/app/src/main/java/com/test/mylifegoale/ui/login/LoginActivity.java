@@ -149,7 +149,8 @@ public class LoginActivity extends AppCompatActivity {
                                 LoggedInUser.setUserFullName(userData.firstName+" "+userData.lastName);
                                 LoggedInUser.setUserEmail(userData.email);
                                 LoggedInUser.setUserVerifiedStatus(userData.isVerified);
-                                Log.d("taggy", userData.firstName);
+                                Log.d("taggy", LoggedInUser.getUserFullName());
+                                Log.d("taggy", LoggedInUser.getUserId());
                             }
 
                             // Invalid credentials status code = 204
