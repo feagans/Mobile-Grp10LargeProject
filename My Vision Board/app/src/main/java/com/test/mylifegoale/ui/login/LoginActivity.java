@@ -129,7 +129,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("taggy", "ONCLICK!!");
                 try {
                     APIService.LoginRequest user = new APIService.LoginRequest(usernameEditText.getText().toString(), passwordEditText.getText().toString());
                     API.login(user).enqueue(new Callback<APIService.LoginResponse>() {
@@ -149,8 +148,6 @@ public class LoginActivity extends AppCompatActivity {
                                 LoggedInUser.setUserFullName(userData.firstName+" "+userData.lastName);
                                 LoggedInUser.setUserEmail(userData.email);
                                 LoggedInUser.setUserVerifiedStatus(userData.isVerified);
-                                Log.d("taggy", LoggedInUser.getUserFullName());
-                                Log.d("taggy", LoggedInUser.getUserId());
                             }
 
                             // Invalid credentials status code = 204
@@ -166,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
                         // Request failed
                         @Override
                         public void onFailure(Call<APIService.LoginResponse> call, Throwable t) {
-                            Log.d("TAGGYTAG", "api ['pfailing!");
+                            Log.d("TAGGYTAG", "api request fail!");
                         }
                     });
 
@@ -179,7 +176,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showLoginFailed() {
-        Log.d("taggy", "ShowloginFail!!");
         Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<font color='#fc0303' ><b>" + "Invalid Credentials" + "</b></font>"), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.TOP, 0, 0);
         toast.show();

@@ -15,6 +15,9 @@ import com.test.mylifegoale.R;
 import com.test.mylifegoale.adapters.VisionAdapter;
 import com.test.mylifegoale.base.BaseActivity;
 import com.test.mylifegoale.base.roomDb.AppDatabase;
+import com.test.mylifegoale.data.APIService;
+import com.test.mylifegoale.data.model.BucketComponents;
+import com.test.mylifegoale.data.model.LoggedInUser;
 import com.test.mylifegoale.databinding.ActivityVisionBinding;
 import com.test.mylifegoale.itemClick.OnAsyncBackground;
 import com.test.mylifegoale.model.AffirmationRowModel;
@@ -30,6 +33,12 @@ import org.apache.commons.io.IOUtils;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class VisionActivity extends BaseActivity {
     ArrayList<AffirmationRowModel> affirmationRowList = new ArrayList<>();
     AppDatabase appDatabase;
@@ -37,11 +46,26 @@ public class VisionActivity extends BaseActivity {
     VisionAdapter visionAdapter;
     ArrayList<VisionModel> visionModelArrayList = new ArrayList<>();
 
+    // API
+    public Retrofit retrofit;
+    public APIService.API API;
+    private static VisionActivity mInstance;
+    public APIService.AllBucketListsResponse bucketLists;
+
     public void setBinding() {
         this.binding = (ActivityVisionBinding) DataBindingUtil.setContentView(this, R.layout.activity_vision);
     }
 
     public void init() {
+        // API do we need to reconnect to API each call??
+        mInstance = this;
+        this.retrofit = new Retrofit.Builder()
+                .baseUrl("https://letsbuckit.herokuapp.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        this.API = retrofit.create(APIService.API.class);
+
+
         this.appDatabase = AppDatabase.getAppDatabase(this);
         this.binding.visionList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         getData();
@@ -69,6 +93,40 @@ public class VisionActivity extends BaseActivity {
     }
 
     private void getData() {
+        Log.d("taggy", "getting data for user: "+ LoggedInUser.getUserId());
+
+        try {
+            APIService.AllBucketListsRequest bucketLists = new APIService.AllBucketListsRequest(LoggedInUser.getUserId());
+            API.allBuckets(bucketLists).enqueue(new Callback<APIService.AllBucketListsResponse>() {
+
+                @Override
+                public void onResponse(Call<APIService.AllBucketListsResponse> call, Response<APIService.AllBucketListsResponse> response) {
+                    Log.d("taggy", "Status Code = " + response.code());
+                    APIService.AllBucketListsResponse userBucketData = response.body();
+                    Log.d("taggy", userBucketData.error);
+
+                    // Create list of all bucket lists
+                    ArrayList<BucketComponents> listy = userBucketData.results;
+
+                    // Get caption of first bucketlist item
+                    Log.d("taggy", listy.get(0).caption);
+
+                    // Nnumber of bucket lists user has in DB
+                    Log.d("taggy", String.valueOf(listy.size()));
+
+
+                }
+
+                @Override
+                public void onFailure(Call<APIService.AllBucketListsResponse> call, Throwable t) {
+                    Log.d("TAGGYTAG", "api failing!");
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Get data from new database. Not using API.
+        // Keep this here in case we cant get API calls working
         new BackgroundAsync(this, true, "", new OnAsyncBackground() {
             public void onPreExecute() {
                 Log.i("BackgroundAsync", "onPreExecute: ");

@@ -1,5 +1,10 @@
 package com.test.mylifegoale.data;
 
+import com.test.mylifegoale.data.model.BucketComponents;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -45,11 +50,34 @@ public final class APIService {
             this.password = password;
         }
     }
-    public interface API {
 
+    public static class AllBucketListsResponse {
+        // List of bucket items
+        public ArrayList<BucketComponents> results;
+        public String error;
+        public AllBucketListsResponse(String error) {
+            this.error = error;
+        }
+    }
+
+    public static class AllBucketListsRequest {
+        public final String userID;
+        public AllBucketListsRequest(String userID) {
+            this.userID = userID;
+        }
+    }
+
+    public interface API {
+        // Login with credentials
         @POST("/api/login")
         Call<LoginResponse> login(
                 @Body LoginRequest user
+        );
+
+        // Query all bucket items for current user
+        @POST("/api/all-buckets")
+        Call<AllBucketListsResponse> allBuckets(
+                @Body AllBucketListsRequest bucketLists
         );
 
         // @TODO prefix with /api
