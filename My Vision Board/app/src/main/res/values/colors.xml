@@ -11,7 +11,7 @@
     <color name="actionbar">@color/progress_green</color>
     <color name="addMobBorder">#7f7f7f</color>
     <color name="addMobTextColor">#1a73e8</color>
-    <color name="background">#659b5c</color>
+    <color name="background">#8e8eff</color>
     <color name="backgroundLight">#478ab1</color>
     <color name="black">#000000</color>
     <color name="borderColor">#7f7f7f</color>
@@ -26,7 +26,7 @@
     <color name="grey_400">#bdbdbd</color>
     <color name="grey_500">#9e9e9e</color>
     <color name="progress_gray">#808080</color>
-    <color name="progress_green">#659b5c</color>
+    <color name="progress_green">#8e8eff</color>
     <color name="rate_us_bg">#d1d1d1</color>
     <color name="ratingBarColor">#f9d71c</color>
     <color name="red">#c91919</color>

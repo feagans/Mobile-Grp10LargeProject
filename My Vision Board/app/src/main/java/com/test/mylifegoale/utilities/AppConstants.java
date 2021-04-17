@@ -1,5 +1,6 @@
 package com.test.mylifegoale.utilities;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -59,7 +60,7 @@ public class AppConstants {
     }
 
     public static void showRattingDialog(final Context context, String str) {
-        RatingDialog.Builder ratingBarColor = new RatingDialog.Builder(context).session(1).title(str).threshold(4.0f).icon(context.getResources().getDrawable(R.mipmap.ic_launcher)).titleTextColor(R.color.white).negativeButtonText("Never").positiveButtonTextColor(R.color.white).negativeButtonTextColor(R.color.white).formTitle("Submit Feedback").formHint("Tell us where we can improve").formSubmitText("Submit").formCancelText("Cancel").ratingBarBackgroundColor(R.color.rate_us_bg).ratingBarColor(R.color.ratingBarColor);
+        RatingDialog.Builder ratingBarColor = new RatingDialog.Builder(context).session(1).title(str).threshold(4.0f).icon(context.getResources().getDrawable(R.mipmap.ic_cropped_logo)).titleTextColor(R.color.white).negativeButtonText("Never").positiveButtonTextColor(R.color.white).negativeButtonTextColor(R.color.white).formTitle("Submit Feedback").formHint("Tell us where we can improve").formSubmitText("Submit").formCancelText("Cancel").ratingBarBackgroundColor(R.color.rate_us_bg).ratingBarColor(R.color.ratingBarColor);
         RatingDialog build = ratingBarColor.playstoreUrl("https://play.google.com/store/apps/details?id=" + context.getPackageName()).onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
             public void onFormSubmitted(String str) {
                 AppPref.setNeverShowRatting(context, true);
@@ -292,6 +293,7 @@ public class AppConstants {
         }
     }
 
+    @SuppressLint("ResourceType")
     public static void showTwoButtonDialog(Context context, String str, String str2, boolean z, boolean z2, String str3, String str4, final TwoButtonDialogListener twoButtonDialogListener) {
         int i = 0;
         AlertDialogTwoButtonBinding alertDialogTwoButtonBinding = (AlertDialogTwoButtonBinding) DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.alert_dialog_two_button, (ViewGroup) null, false);
@@ -446,6 +448,7 @@ public class AppConstants {
         return Constants.PATH_RESOURCE + context.getPackageName() + "/";
     }
 
+    @SuppressLint("ResourceType")
     public static void showEditTextDialog(Context context, boolean z, boolean z2, boolean z3, int i, String str, String str2, String str3, String str4, EditTextDialogListener editTextDialogListener) {
         int i2 = i;
         String str5 = str;
@@ -724,6 +727,7 @@ public class AppConstants {
         }
     }
 
+    @SuppressLint("ResourceType")
     public static void showTwoButtonDialog(Context context, String str, String str2, boolean z, boolean z2, String str3, String str4, final OnTwoButtonDialogClick onTwoButtonDialogClick) {
         int i = 0;
         AlertDialogTwoButtonBinding alertDialogTwoButtonBinding = (AlertDialogTwoButtonBinding) DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.alert_dialog_two_button, (ViewGroup) null, false);
@@ -769,6 +773,7 @@ public class AppConstants {
         }
     }
 
+    @SuppressLint("ResourceType")
     public static void showRestoreDialog(Context context, String str2, boolean z, boolean z2, final OnTwoButtonDialogClick onTwoButtonDialogClick) {
         int i = 0;
         AlertDialogRestoreBinding alertDialogRestoreBinding = (AlertDialogRestoreBinding) DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.alert_dialog_restore, (ViewGroup) null, false);
