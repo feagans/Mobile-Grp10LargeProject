@@ -90,6 +90,24 @@ public final class APIService {
         }
     }
 
+    public static class AddBucketResponse {
+        public String error;
+        public AddBucketResponse(String error) {
+            this.error = error;
+        }
+    }
+
+    public static class AddBucketRequest {
+        public final String userID;
+        public final String itemTitle;
+        public final String caption;
+        public AddBucketRequest(String userID, String itemTitle, String caption) {
+            this.userID = userID;
+            this.itemTitle = itemTitle;
+            this.caption = caption;
+        }
+    }
+
     public interface API {
         // Login with credentials
         @POST("/api/login")
@@ -110,6 +128,14 @@ public final class APIService {
         @POST("/api/all-buckets")
         Call<AllBucketListsResponse> allBuckets(
                 @Body AllBucketListsRequest bucketLists
+        );
+
+        // Add a bucket list item
+        @POST("/api/add-bucket")
+        Call<AddBucketResponse> addBucket(
+                @Body AddBucketRequest userID,
+                @Body AddBucketRequest itemTitle,
+                @Body AddBucketRequest caption
         );
 //
 //        @POST("/api/fr-request")
@@ -159,12 +185,6 @@ public final class APIService {
 //                @Path("itemTitle") String ItemTile,
 //                @Path("caption") String caption,
 //                @Path("completed") String completed
-//        );
-//
-//        @POST("/api/add-todo")
-//        Call<LoginResponse> addItemTodo(
-//                @Path("userID") String userID,
-//                @Path("itemTitle") String itemTitle
 //        );
 //
 //        @POST("/api/all-todo")
