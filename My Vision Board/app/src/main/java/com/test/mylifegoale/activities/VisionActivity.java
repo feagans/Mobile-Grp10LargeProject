@@ -52,6 +52,7 @@ public class VisionActivity extends BaseActivity {
     public APIService.API API;
     private static VisionActivity mInstance;
     public APIService.AllBucketListsResponse bucketLists;
+    public APIService.AddBucketResponse addBucketItem;
 
     public void setBinding() {
         this.binding = (ActivityVisionBinding) DataBindingUtil.setContentView(this, R.layout.activity_vision);
@@ -137,6 +138,28 @@ public class VisionActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Test adding a bucket list item
+        // This is working and adds item to db
+//        try {
+//            APIService.AddBucketRequest newBucketList = new APIService.AddBucketRequest(LoggedInUser.getUserId(), "Test Title", "Test Caption");
+//            API.addBucket(newBucketList).enqueue(new Callback<APIService.AddBucketResponse>() {
+//
+//                @Override
+//                public void onResponse(Call<APIService.AddBucketResponse> call, Response<APIService.AddBucketResponse> response) {
+//                    Log.d("taggy", "Status Code = " + response.code());
+//                    APIService.AddBucketResponse newBucketResponse = response.body();
+//                    Log.d("taggy", newBucketResponse.error);
+//                }
+//
+//                @Override
+//                public void onFailure(Call<APIService.AddBucketResponse> call, Throwable t) {
+//                    Log.d("TAGGYTAG", "api failing!");
+//                }
+//            });
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         new BackgroundAsync(this, true, "", new OnAsyncBackground() {
             public void onPreExecute() {

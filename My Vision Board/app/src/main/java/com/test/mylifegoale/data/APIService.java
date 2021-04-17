@@ -108,6 +108,20 @@ public final class APIService {
         }
     }
 
+    public static class DeleteBucketResponse {
+        public String error;
+        public DeleteBucketResponse(String error) {
+            this.error = error;
+        }
+    }
+
+    public static class DeleteBucketRequest {
+        public final String ID;
+        public DeleteBucketRequest(String ID) {
+            this.ID = ID;
+        }
+    }
+
     public interface API {
         // Login with credentials
         @POST("/api/login")
@@ -118,10 +132,7 @@ public final class APIService {
         // Register new account
         @POST("/api/register")
         Call<LoginResponse> register(
-                @Body RegisterRequest firstName,
-                @Body RegisterRequest lastName,
-                @Body RegisterRequest email,
-                @Body RegisterRequest password
+                @Body RegisterRequest newUser
           );
 
         // Query all bucket items for current user
@@ -133,59 +144,14 @@ public final class APIService {
         // Add a bucket list item
         @POST("/api/add-bucket")
         Call<AddBucketResponse> addBucket(
-                @Body AddBucketRequest userID,
-                @Body AddBucketRequest itemTitle,
-                @Body AddBucketRequest caption
+                @Body AddBucketRequest newBucketList
         );
-//
-//        @POST("/api/fr-request")
-//        Call<LoginResponse> performFriendRequest(
-//                @Path("senderId") String senderId,
-//                @Path("login") String username
-//        );
-//
-//        @POST("/api/fr-response")
-//        Call<LoginResponse> allowFriendRequest(
-//                @Path("userID") String userID,
-//                @Path("friendID") String friendID,
-//                @Path("status")String status
-//        );
-//
-//        @POST("/api/fr-remove")
-//        Call<LoginResponse> removeFriend(
-//                @Path("userId") String userId,
-//                @Path("friendId") String friendId
-//        );
-//
-//        @POST("/api/fr-allfriends")
-//        Call<LoginResponse> showAllFriends(
-//                @Path("userID") String userID
-//        );
-//
-//        @POST("/api/add-bucket")
-//        Call<LoginResponse> addItemBucket(
-//                @Path("userID") String userID,
-//                @Path("itemTitle") String itemTitle,
-//                @Path("caption") String caption
-//        );
-//
-//        @POST("/api/all-buckets")
-//        Call<LoginResponse> showAllbucket(
-//                @Path("userID") String userID
-//        );
-//
-//        @POST("/api/delete-bucket")
-//        Call<LoginResponse> deleteItemBucket(
-//                @Path("ID") String ID
-//        );
-//
-//        @POST("/api/edit-bucket")
-//        Call<LoginResponse> editItemBucket(
-//                @Path("ID") String ID,
-//                @Path("itemTitle") String ItemTile,
-//                @Path("caption") String caption,
-//                @Path("completed") String completed
-//        );
+
+        // Delete a bucket list item
+        @POST("/api/delete-bucket")
+        Call<DeleteBucketResponse> deleteBucketItem(
+                @Body DeleteBucketRequest oldBucketList
+        );
 //
 //        @POST("/api/all-todo")
 //        Call<LoginResponse> showAllTodo(
