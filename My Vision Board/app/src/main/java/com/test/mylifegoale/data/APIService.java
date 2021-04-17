@@ -51,6 +51,29 @@ public final class APIService {
         }
     }
 
+    public static class RegisterResponse {
+        public final String error;
+        public RegisterResponse(String error) {
+            this.error = error;
+        }
+    }
+
+    // Inputs to register API call
+    public static class RegisterRequest {
+        public final String firstName;
+        public final String lastName;
+        public final String login;
+        public final String email;
+        public final String password;
+        public RegisterRequest(String firstName, String lastName, String login, String email, String password) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.login = login;
+            this.email = email;
+            this.password = password;
+        }
+    }
+
     public static class AllBucketListsResponse {
         // List of bucket items
         public ArrayList<BucketComponents> results;
@@ -74,22 +97,20 @@ public final class APIService {
                 @Body LoginRequest user
         );
 
+        // Register new account
+        @POST("/api/register")
+        Call<LoginResponse> register(
+                @Body RegisterRequest firstName,
+                @Body RegisterRequest lastName,
+                @Body RegisterRequest email,
+                @Body RegisterRequest password
+          );
+
         // Query all bucket items for current user
         @POST("/api/all-buckets")
         Call<AllBucketListsResponse> allBuckets(
                 @Body AllBucketListsRequest bucketLists
         );
-
-        // @TODO prefix with /api
-//        @POST("/api/register")
-//        Call<LoginResponse> register(
-//        @POST("/register")
-//        Call<LoginResponse> register(
-//                @Body("firstName") String firstName,
-//                @Body("lastName") String lastName,
-//                @Body("email") String email,
-//                @Body("password") String password
-//          );
 //
 //        @POST("/api/fr-request")
 //        Call<LoginResponse> performFriendRequest(
