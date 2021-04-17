@@ -105,22 +105,24 @@ public class VisionActivity extends BaseActivity {
                     APIService.AllBucketListsResponse userBucketData = response.body();
                     Log.d("taggy", userBucketData.error);
 
-                    // Create list of all bucket lists
-                    ArrayList<BucketComponents> listy = userBucketData.results;
+                    // If there are bucket lists in DB will return error = ""
+                    if (userBucketData.error.equals("")){
+                        // Create list of all bucket lists
+                        ArrayList<BucketComponents> listy = userBucketData.results;
 
-                    // Get caption of first bucketlist item
-                    Log.d("taggy", listy.get(0).caption);
+                        // Get caption of first bucketlist item
+                        Log.d("taggy", listy.get(0).caption);
 
-                    // Nnumber of bucket lists user has in DB
-                    Log.d("taggy", String.valueOf(listy.size()));
-                    for (int i = 0; i < listy.size(); i++){
-                        VisionModel vm = new VisionModel();
-                        BucketComponents listyItem = listy.get(i);
-                        vm.setName(listyItem.getItemTitle());
-                        vm.setId(listyItem.getID());
-                        visionModelArrayList.add(vm);
+                        // Number of bucket lists user has in DB
+                        Log.d("taggy", String.valueOf(listy.size()));
+                        for (int i = 0; i < listy.size(); i++){
+                            VisionModel vm = new VisionModel();
+                            BucketComponents listyItem = listy.get(i);
+                            vm.setName(listyItem.getItemTitle());
+                            vm.setId(listyItem.getID());
+                            visionModelArrayList.add(vm);
+                        }
                     }
-
                 }
 
                 @Override
