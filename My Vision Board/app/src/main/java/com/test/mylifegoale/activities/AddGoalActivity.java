@@ -221,18 +221,12 @@ public class AddGoalActivity extends BaseActivity {
             this.visionModel.setName(this.binding.goal.getText().toString());
             this.visionModel.setDescription(this.binding.goalDescription.getText().toString());
             if (!this.isForEdit) {
-                if (!validateEndDate()) {
-                    return false;
-                }
                 this.visionModel.setId(AppConstants.getUniqueId());
-                this.visionModel.setCreatedTime(System.currentTimeMillis());
                 this.visionModel.setOrd(this.appDatabase.visionDao().getMaxOrd());
                 if (this.appDatabase.visionDao().insert(this.visionModel) > 0) {
                     this.dataAdded = true;
                     onBackPressed();
                 }
-            } else if (!validateEndDate()) {
-                return false;
             } else {
                 if (this.appDatabase.visionDao().update(this.visionModel) > 0) {
                     this.dataAdded = true;
@@ -243,41 +237,13 @@ public class AddGoalActivity extends BaseActivity {
         return super.onOptionsItemSelected(menuItem);
     }
 
-    private boolean validateEndDate() {
-        if (this.visionModel.getName() != null && this.visionModel.getName().isEmpty()) {
-            Toast.makeText(this.context, getString(R.string.title_require), Toast.LENGTH_SHORT).show();
-            return false;
-         //Omitted as android wont let the app upload pictures from this activity
-        }/* else if (this.visionModel.getVisionProfile() == null || this.visionModel.getVisionProfile().isEmpty()) {
-            Toast.makeText(this.context, getString(R.string.error_profile), Toast.LENGTH_SHORT).show();
-            return false;
-        } */else {
-            if (this.visionModel.getEndTime() != 0) {
-                if (this.visionModel.isPending() && AppConstants.getFormattedDateNew(this.visionModel.getEndTime()).before(AppConstants.getFormattedDateNew(System.currentTimeMillis()))) {
-                    Toast.makeText(this.context, "End date must be set to today or greater than today.", Toast.LENGTH_LONG).show();
-                    return false;
-                } else if (!this.visionModel.isPending() && AppConstants.getFormattedDateNew(this.visionModel.getEndTime()).after(AppConstants.getFormattedDateNew(System.currentTimeMillis()))) {
-                    Toast.makeText(this.context, "End date must be set to today or smaller than today.", Toast.LENGTH_LONG).show();
-                    return false;
-                }
-            }
-            return true;
-        }
-    }
-
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.addProfile:
                 CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(this);
                 return;
-            case R.id.clearEndDat:
-                this.visionModel.setEndTime(0);
-                return;
             case R.id.completed:
                 setVisionStatus(false);
-                return;
-            case R.id.datePicker:
-                callDatePickerDialog(this.visionModel.getEndTime());
                 return;
             case R.id.descriptionSpeaker:
                 promptSpeechInput(this.reqCodeDescSpeechInput);
@@ -364,38 +330,6 @@ public class AddGoalActivity extends BaseActivity {
         }
         this.visionModel.setVisionProfile(file2.getAbsolutePath());
         setProfile();
-    }
-
-    private void callDatePickerDialog(long j) {
-        final Calendar instance = Calendar.getInstance();
-        if (j == 0) {
-            j = System.currentTimeMillis();
-        }
-        instance.setTimeInMillis(j);
-        int i = instance.get(1);
-        int i2 = instance.get(2);
-        int i3 = instance.get(5);
-        DatePickerDialog.OnDateSetListener r3 = new DatePickerDialog.OnDateSetListener() {
-            public void onDateSet(DatePicker datePicker, int i, int i2, int i3) {
-                try {
-                    Calendar instance = Calendar.getInstance();
-                    instance.set(1, i);
-                    instance.set(2, i2);
-                    instance.set(5, i3);
-                    instance.set(11, instance.get(11));
-                    instance.set(12, instance.get(12));
-                    visionModel.setEndTime(instance.getTimeInMillis());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        DatePickerDialog datePickerDialog2 = this.datePickerDialog;
-        if (datePickerDialog2 != null && datePickerDialog2.isShowing()) {
-            this.datePickerDialog.dismiss();
-        }
-        this.datePickerDialog = new DatePickerDialog(this, r3, i, i2, i3);
-        this.datePickerDialog.show();
     }
 
     @Override

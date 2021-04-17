@@ -249,7 +249,7 @@ public class VisionModel extends BaseObservable implements Parcelable {
         sb.append("End Date: ");
         long j = this.endTime;
         sb.append(j == 0 ? "(Optional)" : AppConstants.getFormattedDate(j, AppConstants.SIMPLE_DATE_FORMAT));
-        return sb.toString();
+        return ("");
     }
 
     public String getDateStringEdit() {
@@ -257,7 +257,7 @@ public class VisionModel extends BaseObservable implements Parcelable {
         if (j == 0) {
             return "";
         }
-        return AppConstants.getFormattedDate(j, AppConstants.SIMPLE_DATE_FORMAT);
+        return "";
     }
 
     public String getStatusString() {

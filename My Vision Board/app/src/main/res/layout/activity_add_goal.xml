@@ -98,42 +98,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_6sdp"
-                        android:background="@drawable/square_input_bg"
-                        android:gravity="center_vertical">
-
-                        <EditText
-                            android:id="@+id/endTime"
-                            style="@style/TextViewStyleCommon"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:clickable="false"
-                            android:focusable="false"
-                            android:hint="@string/endTime"
-                            android:text="@{VisionModel.getDateStringEdit}" />
-
-                        <ImageView
-                            android:id="@+id/clearEndDat"
-                            android:layout_width="@dimen/_25sdp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:onClick="onClick"
-                            android:padding="@dimen/_4sdp"
-                            android:src="@drawable/close" />
-
-                        <ImageView
-                            android:id="@+id/datePicker"
-                            android:layout_width="@dimen/_25sdp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:onClick="onClick"
-                            android:padding="@dimen/_4sdp"
-                            android:src="@drawable/calendar" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:orientation="horizontal">
 
