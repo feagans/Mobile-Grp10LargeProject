@@ -43,7 +43,7 @@
     <string name="delete_msg">Are you sure want to delete</string>
     <string name="delete_summery">Are you sure you want to delete?</string>
     <string name="demo">demo</string>
-    <string name="description">Description(Optional)</string>
+    <string name="description">Description</string>
     <string name="dialog_negative_text">Cancel</string>
     <string name="dialog_positive_text">OK</string>
     <string name="download">Download</string>
@@ -79,7 +79,7 @@
     <string name="folder_color">Folder color</string>
     <string name="folder_icon">Folder icon</string>
     <string name="folder_name">Folder name</string>
-    <string name="goalHint">Your Future</string>
+    <string name="goalHint">Title</string>
     <string name="home_default_msg">Start your list.</string>
     <string name="i_trust_my_self">I trust my self</string>
     <string name="import_successfully">Import Successfully</string>
