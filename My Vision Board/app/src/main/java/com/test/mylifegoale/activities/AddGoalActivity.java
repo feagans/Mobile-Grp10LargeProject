@@ -78,14 +78,12 @@ public class AddGoalActivity extends BaseActivity {
         }
         this.categoryModelArrayList.add(0, new CategoryModel("", "Add new category", true));
         this.spinnerAdapter = new SpinnerAdapter(this, 0, this.categoryModelArrayList);
-        this.binding.addProfile.setImageResource(R.drawable.add_image);
         if (!this.isForEdit) {
             setVisionStatus(true);
         } else if (getIntent() != null) {
             this.visionModel = (VisionModel) getIntent().getParcelableExtra(Constants.VISION_DATA_TAG);
             Log.i("init", "init: " + this.visionModel.getVisionProfile());
             this.binding.setVisionModel(this.visionModel);
-            setProfile();
             getPos();
             setVisionStatus(this.visionModel.isPending());
         }
@@ -149,10 +147,6 @@ public class AddGoalActivity extends BaseActivity {
                 //add
             }
         });
-    }
-
-    private void setProfile() {
-        ((RequestBuilder) ((RequestBuilder) Glide.with((FragmentActivity) this).load(this.visionModel.getVisionProfile()).diskCacheStrategy(DiskCacheStrategy.NONE)).skipMemoryCache(true)).into(this.binding.addProfile);
     }
 
     private void getPos() {
@@ -239,9 +233,6 @@ public class AddGoalActivity extends BaseActivity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.addProfile:
-                CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(this);
-                return;
             case R.id.completed:
                 setVisionStatus(false);
                 return;
@@ -329,7 +320,38 @@ public class AddGoalActivity extends BaseActivity {
             file.delete();
         }
         this.visionModel.setVisionProfile(file2.getAbsolutePath());
-        setProfile();
+    }
+
+    private void callDatePickerDialog(long j) {
+        final Calendar instance = Calendar.getInstance();
+        if (j == 0) {
+            j = System.currentTimeMillis();
+        }
+        instance.setTimeInMillis(j);
+        int i = instance.get(1);
+        int i2 = instance.get(2);
+        int i3 = instance.get(5);
+        DatePickerDialog.OnDateSetListener r3 = new DatePickerDialog.OnDateSetListener() {
+            public void onDateSet(DatePicker datePicker, int i, int i2, int i3) {
+                try {
+                    Calendar instance = Calendar.getInstance();
+                    instance.set(1, i);
+                    instance.set(2, i2);
+                    instance.set(5, i3);
+                    instance.set(11, instance.get(11));
+                    instance.set(12, instance.get(12));
+                    visionModel.setEndTime(instance.getTimeInMillis());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        DatePickerDialog datePickerDialog2 = this.datePickerDialog;
+        if (datePickerDialog2 != null && datePickerDialog2.isShowing()) {
+            this.datePickerDialog.dismiss();
+        }
+        this.datePickerDialog = new DatePickerDialog(this, r3, i, i2, i3);
+        this.datePickerDialog.show();
     }
 
     @Override
