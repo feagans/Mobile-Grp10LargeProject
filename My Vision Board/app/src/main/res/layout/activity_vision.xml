@@ -28,19 +28,19 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-<!--                <ImageView-->
-<!--                    android:layout_width="@dimen/_70sdp"-->
-<!--                    android:layout_height="@dimen/_70sdp"-->
-<!--                    android:layout_marginRight="@dimen/_5sdp"-->
-<!--                    android:src="@drawable/vision_board"-->
-<!--                    app:tint="@color/progress_gray" />-->
+                <ImageView
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:src="@drawable/vision_board"
+                    app:tint="@color/progress_gray" />
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/vision_default_msg"-->
-<!--                    android:textColor="@color/progress_gray"-->
-<!--                    android:textSize="@dimen/_14sdp" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vision_default_msg"
+                    android:textColor="@color/progress_gray"
+                    android:textSize="@dimen/_14sdp" />
             </LinearLayout>
 
             <FrameLayout

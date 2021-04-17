@@ -45,6 +45,7 @@ public class VisionActivity extends BaseActivity {
     ActivityVisionBinding binding;
     VisionAdapter visionAdapter;
     ArrayList<VisionModel> visionModelArrayList = new ArrayList<>();
+    boolean empty = true;
 
     // API
     public Retrofit retrofit;
@@ -75,11 +76,12 @@ public class VisionActivity extends BaseActivity {
 
 
     public void setDefaultLayout() {
-        if (this.visionModelArrayList.size() > 0) {
+        if (!empty) {
             this.binding.defaultMsglayout.setVisibility(View.GONE);
             this.binding.bottomLayout.setVisibility(View.VISIBLE);
             return;
         }
+
         this.binding.defaultMsglayout.setVisibility(View.VISIBLE);
         this.binding.bottomLayout.setVisibility(View.GONE);
     }
@@ -107,6 +109,8 @@ public class VisionActivity extends BaseActivity {
 
                     // If there are bucket lists in DB will return error = ""
                     if (userBucketData.error.equals("")){
+                        empty = false;
+                        setDefaultLayout();
                         // Create list of all bucket lists
                         ArrayList<BucketComponents> listy = userBucketData.results;
 
@@ -133,8 +137,7 @@ public class VisionActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // Get data from new database. Not using API.
-        // Keep this here in case we cant get API calls working
+
         new BackgroundAsync(this, true, "", new OnAsyncBackground() {
             public void onPreExecute() {
                 Log.i("BackgroundAsync", "onPreExecute: ");
@@ -147,7 +150,6 @@ public class VisionActivity extends BaseActivity {
             }
 
             public void onPostExecute() {
-                setDefaultLayout();
                 VisionActivity visionActivity = VisionActivity.this;
                 visionActivity.visionAdapter = new VisionAdapter(visionActivity, visionActivity.visionModelArrayList);
                 ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeAndDragHelper(visionAdapter));
