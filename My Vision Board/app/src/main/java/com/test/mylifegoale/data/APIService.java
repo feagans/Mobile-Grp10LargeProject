@@ -1,6 +1,7 @@
 package com.test.mylifegoale.data;
 
 import com.test.mylifegoale.data.model.BucketComponents;
+import com.test.mylifegoale.data.model.TodoComponents;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +91,22 @@ public final class APIService {
         }
     }
 
+    public static class AllTodoListsResponse {
+        // List of bucket items
+        public ArrayList<TodoComponents> results;
+        public String error;
+        public AllTodoListsResponse(String error) {
+            this.error = error;
+        }
+    }
+
+    public static class AllTodoListsRequest {
+        public final String userID;
+        public AllTodoListsRequest(String userID) {
+            this.userID = userID;
+        }
+    }
+
     public static class AddBucketResponse {
         public String error;
         public AddBucketResponse(String error) {
@@ -139,6 +156,12 @@ public final class APIService {
         @POST("/api/all-buckets")
         Call<AllBucketListsResponse> allBuckets(
                 @Body AllBucketListsRequest bucketLists
+        );
+
+        // Query all to-do items for current user
+        @POST("/api/all-todo")
+        Call<AllTodoListsResponse> allTodos(
+                @Body AllTodoListsRequest todoLists
         );
 
         // Add a bucket list item

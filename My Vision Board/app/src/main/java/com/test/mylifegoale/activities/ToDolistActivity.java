@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +20,16 @@ import com.test.mylifegoale.R;
 import com.test.mylifegoale.adapters.DiaryDataAdapter;
 import com.test.mylifegoale.base.BaseActivity;
 import com.test.mylifegoale.base.roomDb.AppDatabase;
+import com.test.mylifegoale.data.APIService;
+import com.test.mylifegoale.data.model.BucketComponents;
+import com.test.mylifegoale.data.model.LoggedInUser;
+import com.test.mylifegoale.data.model.TodoComponents;
 import com.test.mylifegoale.databinding.ActivityTodolistBinding;
 import com.test.mylifegoale.itemClick.DialogClick;
 import com.test.mylifegoale.itemClick.OnAsyncBackground;
 import com.test.mylifegoale.itemClick.RecyclerClick;
 import com.test.mylifegoale.model.DiaryData;
+import com.test.mylifegoale.model.VisionModel;
 import com.test.mylifegoale.utilities.AdConstants;
 import com.test.mylifegoale.utilities.AllDialog;
 import com.test.mylifegoale.utilities.BackgroundAsync;
@@ -37,6 +43,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class ToDolistActivity extends BaseActivity {
     public static boolean filterFlag = false;
     DiaryDataAdapter adapter;
@@ -47,6 +59,12 @@ public class ToDolistActivity extends BaseActivity {
     boolean sortByNew = false;
     public ArrayList<DiaryData> tempDiaryDataList = new ArrayList<>();
 
+    // API
+    public Retrofit retrofit;
+    public APIService.API API;
+    private static ToDolistActivity mInstance;
+    public APIService.AllTodoListsResponse todoLists;
+
     public void onClick(View view) {
     }
 
@@ -56,12 +74,55 @@ public class ToDolistActivity extends BaseActivity {
 
     public void init() {
         AdConstants.bannerad(this.binding.llads, this);
+
+        // API do we need to reconnect to API each call??
+        mInstance = this;
+        this.retrofit = new Retrofit.Builder()
+                .baseUrl("https://letsbuckit.herokuapp.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        this.API = retrofit.create(APIService.API.class);
+
         this.appDatabase = AppDatabase.getAppDatabase(this);
         getData();
         setRecyclerView();
     }
 
     private void getData() {
+        Log.d("taggy", "getting data from user: " + LoggedInUser.getUserId());
+
+        try {
+            APIService.AllTodoListsRequest todoLists = new APIService.AllTodoListsRequest(LoggedInUser.getUserId());
+            API.allTodos(todoLists).enqueue(new Callback<APIService.AllTodoListsResponse>() {
+
+                @Override
+                public void onResponse(Call<APIService.AllTodoListsResponse> call, Response<APIService.AllTodoListsResponse> response) {
+                    Log.d("taggy", "All Todo Status Code = " + response.code());
+                    APIService.AllTodoListsResponse userTodoData = response.body();
+                    Log.d("taggy", userTodoData.error);
+
+                    // If there are bucket lists in DB will return error = ""
+                    if (userTodoData.error.equals("")){
+                        // Add todo items like we did in VisionActivity
+                        Log.d("taggy", "User has todos in DB.");
+
+                        // Create array to store
+                        ArrayList<TodoComponents> todoListy = userTodoData.results;
+                        Log.d("taggy", "Size of todo list:" + todoListy.size());
+                        // Get itemTitle of first todo item
+                        Log.d("taggy", todoListy.get(0).itemTitle);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<APIService.AllTodoListsResponse> call, Throwable t) {
+
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         new BackgroundAsync(this, true, "", new OnAsyncBackground() {
             public void onPreExecute() {
             }
