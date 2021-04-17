@@ -152,29 +152,25 @@ public final class APIService {
         Call<DeleteBucketResponse> deleteBucketItem(
                 @Body DeleteBucketRequest oldBucketList
         );
-//
+
 //        @POST("/api/all-todo")
-//        Call<LoginResponse> showAllTodo(
-//                @Path("userID") String userID
+//        Call<AllTodoResponse> showAllTodo(
+//                @Body AllTodoResponse todoLists
 //        );
 //
 //        @POST("/api/delete-todo")
-//        Call<LoginResponse> deleteItemTodo(
-//                @Path("ID") String ID
+//        Call<DeleteTodoResponse> deleteItemTodo(
+//                @Body DeleteTodoResponse oldTodoList
 //        );
 //
 //        @POST("/api/edit-todo")
-//        Call<LoginResponse> editItemTodo(
-//                @Path("ID") String ID,
-//                @Path("itemTitle") String itemTitle,
-//                @Path("completed") String completed
+//        Call<EditTodoResponse> editItemTodo(
+//                @Body EditTodoResponse editTodoList
 //        );
 //
 //        @POST("/api/mark-completed-todo")
-//        Call<LoginResponse> completedTodo(
-//                @Path("itemTitle") String itemTitle,
-//                @Path("userID") String userID,
-//                @Path("completed") String completed
+//        Call<CompleteTodoResponse> completedTodo(
+//                @Body CompleteTodoResponse completeTodoList
 //        );
     }
 }
