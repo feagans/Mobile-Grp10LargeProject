@@ -93,7 +93,7 @@ public class VisionActivity extends BaseActivity {
     }
 
     private void getData() {
-        Log.d("taggy", "getting data for user: "+ LoggedInUser.getUserId());
+        Log.d("taggy", "getting data for user: " + LoggedInUser.getUserId());
 
         try {
             APIService.AllBucketListsRequest bucketLists = new APIService.AllBucketListsRequest(LoggedInUser.getUserId());
@@ -113,7 +113,13 @@ public class VisionActivity extends BaseActivity {
 
                     // Nnumber of bucket lists user has in DB
                     Log.d("taggy", String.valueOf(listy.size()));
-
+                    for (int i = 0; i < listy.size(); i++){
+                        VisionModel vm = new VisionModel();
+                        BucketComponents listyItem = listy.get(i);
+                        vm.setName(listyItem.getItemTitle());
+                        vm.setId(listyItem.getID());
+                        visionModelArrayList.add(vm);
+                    }
 
                 }
 
