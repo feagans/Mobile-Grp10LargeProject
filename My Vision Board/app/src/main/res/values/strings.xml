@@ -177,6 +177,8 @@
     <string name="title_settings_dialog">Permissions Required</string>
     <string name="uncheck_all">UnCheck All</string>
     <string name="vision_board">Bucket List</string>
+    <string name="edit_board">Editing Task</string>
+    <string name="todo_board">Todo List</string>
     <string name="vision_default_msg">No records found!</string>
     <string name="voice">Voice</string>
     <string name="voice_recording">Voice Recording</string>

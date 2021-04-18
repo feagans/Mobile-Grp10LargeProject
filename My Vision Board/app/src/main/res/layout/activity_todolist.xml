@@ -5,15 +5,20 @@
         xmlns:aapt="http://schemas.android.com/aapt"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_above="@+id/llads"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:animateLayoutChanges="true">
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/visionList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/bottomLayout"
+                android:layout_alignParentTop="true"
+                android:text="Hello World!" />
 
             <LinearLayout
                 android:id="@+id/defaultMsglayout"
@@ -26,22 +31,41 @@
                 <ImageView
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_70sdp"
-                    android:src="@drawable/journal"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:src="@drawable/vision_board"
                     app:tint="@color/progress_gray" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/home_default_msg"
+                    android:text="@string/vision_default_msg"
                     android:textColor="@color/progress_gray"
                     android:textSize="@dimen/_14sdp" />
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <FrameLayout
+                android:id="@+id/bottomLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabPlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginRight="12dp"
+                    android:elevation="4dp"
+                    android:onClick="onClick"
+                    android:src="@drawable/play_simple"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:tint="@color/white"
+                    app:fabSize="normal" />
+
+
+            </FrameLayout>
         </RelativeLayout>
         <com.google.android.gms.ads.AdView
             android:id="@+id/llads"
@@ -54,4 +78,5 @@
             />
 
     </RelativeLayout>
+
 </layout>

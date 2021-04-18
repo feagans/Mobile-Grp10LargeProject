@@ -44,7 +44,7 @@ public class VisionEditActivity extends BaseActivity {
     }
 
     public void setToolbar() {
-        setToolbarTitle(getString(R.string.vision_board));
+        setToolbarTitle(getString(R.string.edit_board));
         setToolbarBack(true);
     }
 
