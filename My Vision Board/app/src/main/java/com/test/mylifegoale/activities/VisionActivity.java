@@ -125,6 +125,7 @@ public class VisionActivity extends BaseActivity {
                             VisionModel vm = new VisionModel();
                             BucketComponents listyItem = listy.get(i);
                             vm.setName(listyItem.getItemTitle());
+                            vm.setDescription(listyItem.getCaption());
                             vm.setId(listyItem.getID());
                             visionModelArrayList.add(vm);
                         }
