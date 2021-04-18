@@ -67,8 +67,8 @@ public class VisionActivity extends BaseActivity {
                 .build();
         this.API = retrofit.create(APIService.API.class);
 
-
         this.appDatabase = AppDatabase.getAppDatabase(this);
+
         this.binding.visionList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         getData();
         AdConstants.bannerad(this.binding.llads, this);
@@ -120,6 +120,7 @@ public class VisionActivity extends BaseActivity {
 
                         // Number of bucket lists user has in DB
                         Log.d("taggy", String.valueOf(listy.size()));
+
                         for (int i = 0; i < listy.size(); i++){
                             VisionModel vm = new VisionModel();
                             BucketComponents listyItem = listy.get(i);

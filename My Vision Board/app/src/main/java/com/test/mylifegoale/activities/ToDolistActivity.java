@@ -57,6 +57,7 @@ public class ToDolistActivity extends BaseActivity {
     public ArrayList<DiaryData> diaryDataList = new ArrayList<>();
     String filterByText = "";
     boolean sortByNew = false;
+    boolean empty = true;
     public ArrayList<DiaryData> tempDiaryDataList = new ArrayList<>();
 
     // API
@@ -72,6 +73,16 @@ public class ToDolistActivity extends BaseActivity {
         this.binding = (ActivityTodolistBinding) DataBindingUtil.setContentView(this, R.layout.activity_todolist);
     }
 
+    public void setDefaultLayout() {
+        if (!empty) {
+            this.binding.defaultMsglayout.setVisibility(View.GONE);
+            //this.binding.bottomLayout.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        this.binding.defaultMsglayout.setVisibility(View.VISIBLE);
+        //this.binding.bottomLayout.setVisibility(View.GONE);
+    }
     public void init() {
         AdConstants.bannerad(this.binding.llads, this);
 
@@ -88,6 +99,8 @@ public class ToDolistActivity extends BaseActivity {
         setRecyclerView();
     }
 
+
+
     private void getData() {
         Log.d("taggy", "getting data from user: " + LoggedInUser.getUserId());
 
@@ -103,20 +116,31 @@ public class ToDolistActivity extends BaseActivity {
 
                     // If there are bucket lists in DB will return error = ""
                     if (userTodoData.error.equals("")){
+                        empty = false;
+                        setDefaultLayout();
                         // Add todo items like we did in VisionActivity
-                        Log.d("taggy", "User has todos in DB.");
+                        ArrayList<TodoComponents> listy = userTodoData.results;
 
                         // Create array to store
                         ArrayList<TodoComponents> todoListy = userTodoData.results;
                         Log.d("taggy", "Size of todo list:" + todoListy.size());
+
                         // Get itemTitle of first todo item
                         Log.d("taggy", todoListy.get(0).itemTitle);
+
+                        for (int i = 0; i < todoListy.size(); i++) {
+                            DiaryData dd = new DiaryData();
+                            TodoComponents listyItem = todoListy.get(i);
+                            dd.setTitle(listyItem.getItemTitle());
+                            dd.setId(listyItem.getID());
+                            tempDiaryDataList.add(dd);
+                        }
                     }
                 }
 
                 @Override
                 public void onFailure(Call<APIService.AllTodoListsResponse> call, Throwable t) {
-
+                    Log.d("TAGGYTAG", "api failing!");
                 }
             });
         } catch (Exception e) {
