@@ -141,6 +141,8 @@ public class ToDolistActivity extends BaseActivity {
                             TodoComponents listyItem = listy.get(i);
                             vm.setName(listyItem.getItemTitle());
                             vm.setId(listyItem.getID());
+                            // Pending will be true if item is NOT completed
+                            vm.setPending(!listyItem.getCompleted());
                             visionModelArrayList.add(vm);
                         }
                     }

@@ -105,6 +105,8 @@ public class DashBoardActivity extends BaseActivity implements DashboardAdapter.
                             TodoComponents listyItem = listy.get(i);
                             vm.setName(listyItem.getItemTitle());
                             vm.setId(listyItem.getID());
+                            // Pending will be true if item is NOT completed
+                            vm.setPending(!listyItem.getCompleted());
 
                             if (listyItem.completed) {
                                 completedList.add(vm);
@@ -172,6 +174,9 @@ public class DashBoardActivity extends BaseActivity implements DashboardAdapter.
                             vm.setName(listyItem.getItemTitle());
                             vm.setId(listyItem.getID());
                             vm.setDescription(listyItem.getCaption());
+                            // Pending will be true if item is NOT completed
+                            vm.setPending(!listyItem.getCompleted());
+
 
                             if (listyItem.completed) {
                                 completedList.add(vm);

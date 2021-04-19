@@ -127,6 +127,8 @@ public class VisionActivity extends BaseActivity {
                             vm.setName(listyItem.getItemTitle());
                             vm.setDescription(listyItem.getCaption());
                             vm.setId(listyItem.getID());
+                            // Pending will be true if item is NOT completed
+                            vm.setPending(!listyItem.getCompleted());
                             visionModelArrayList.add(vm);
                         }
                     }

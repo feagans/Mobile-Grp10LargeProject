@@ -12,6 +12,6 @@ public class TodoComponents {
     public void setUserID(String userID) { this.userID = userID; }
     public String getItemTitle() { return itemTitle; }
     public void setItemTitle(String itemTitle) { this.itemTitle = itemTitle; }
-    public boolean isCompleted() { return completed; }
+    public boolean getCompleted() { return completed; }
     public void setCompleted(boolean completed) { this.completed = completed; }
 }

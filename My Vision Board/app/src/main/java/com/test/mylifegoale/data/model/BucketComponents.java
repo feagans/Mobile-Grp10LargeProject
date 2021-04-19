@@ -15,6 +15,6 @@ public class BucketComponents {
     public void setItemTitle(String itemTitle) { this.itemTitle = itemTitle; }
     public String getCaption() { return caption; }
     public void setCaption(String caption) { this.caption = caption; }
-    public boolean isCompleted() { return completed; }
+    public boolean getCompleted() { return completed; }
     public void setCompleted(boolean completed) { this.completed = completed; }
 }
