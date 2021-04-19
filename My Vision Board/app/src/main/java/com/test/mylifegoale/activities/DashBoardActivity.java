@@ -1,6 +1,7 @@
 package com.test.mylifegoale.activities;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,19 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.mylifegoale.R;
 import com.test.mylifegoale.adapters.DashboardAdapter;
+import com.test.mylifegoale.adapters.VisionAdapter;
 import com.test.mylifegoale.base.BaseActivity;
 import com.test.mylifegoale.base.roomDb.AppDatabase;
+import com.test.mylifegoale.data.APIService;
+import com.test.mylifegoale.data.model.BucketComponents;
+import com.test.mylifegoale.data.model.LoggedInUser;
+import com.test.mylifegoale.data.model.TodoComponents;
 import com.test.mylifegoale.databinding.ActivityDashboardBinding;
 import com.test.mylifegoale.databinding.DashboardMainHolderBinding;
 import com.test.mylifegoale.itemClick.OnAsyncBackground;
@@ -23,10 +30,17 @@ import com.test.mylifegoale.model.VisionModel;
 import com.test.mylifegoale.utilities.AdConstants;
 import com.test.mylifegoale.utilities.BackgroundAsync;
 import com.test.mylifegoale.utilities.Constants;
+import com.test.mylifegoale.utilities.SwipeAndDragHelper;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DashBoardActivity extends BaseActivity implements DashboardAdapter.DashBoardItemClick {
     ActivityDashboardBinding binding;
@@ -35,6 +49,10 @@ public class DashBoardActivity extends BaseActivity implements DashboardAdapter.
     ArrayList<VisionModel> pendingList = new ArrayList<>();
     String selectedType = "";
     VisionModel selectedVisionModel = new VisionModel();
+    public Retrofit retrofit;
+    public APIService.API API;
+    private static ToDolistActivity mInstance;
+    public APIService.AllTodoListsResponse todoLists;
 
     public void setBinding() {
         this.binding = (ActivityDashboardBinding) DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
@@ -45,41 +63,150 @@ public class DashBoardActivity extends BaseActivity implements DashboardAdapter.
         this.binding.allList.setSelected(true);
         this.binding.completedList.setSelected(false);
         this.binding.pendingList.setSelected(false);
+        this.retrofit = new Retrofit.Builder()
+                .baseUrl("https://letsbuckit.herokuapp.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        this.API = retrofit.create(APIService.API.class);
         getData();
     }
 
     private void getData() {
-        new BackgroundAsync(this, true, "", new OnAsyncBackground() {
-            LinkedHashMap<String, ArrayList<VisionModel>> hashMap = new LinkedHashMap<>();
+        getTodoData();
+        getBucketListData();
+    }
 
-            public void onPreExecute() {
-            }
 
-            public void doInBackground() {
-                pendingList.addAll(AppDatabase.getAppDatabase(DashBoardActivity.this).visionDao().getAllStatusWithCat(true));
-                completedList.addAll(AppDatabase.getAppDatabase(DashBoardActivity.this).visionDao().getAllStatusWithCat(false));
-            }
+    private void getTodoData() {
+        Log.d("taggy", "getting data from user: " + LoggedInUser.getUserId());
+        try {
+            APIService.AllTodoListsRequest todoLists = new APIService.AllTodoListsRequest(LoggedInUser.getUserId());
+            API.allTodos(todoLists).enqueue(new Callback<APIService.AllTodoListsResponse>() {
+                @Override
+                public void onResponse(Call<APIService.AllTodoListsResponse> call, Response<APIService.AllTodoListsResponse> response) {
+                    LinkedHashMap<String, ArrayList<VisionModel>> hashMap = new LinkedHashMap<>();
 
-            public void onPostExecute() {
-                this.hashMap.put(getString(R.string.pending_full), pendingList);
-                this.hashMap.put(getString(R.string.completed_full), completedList);
-                entries = new ArrayList<>(this.hashMap.entrySet());
-                binding.recyclerView.setLayoutManager(new LinearLayoutManager(DashBoardActivity.this));
-                RecyclerView recyclerView = binding.recyclerView;
-                recyclerView.setAdapter(new AdapterD(entries));
-                Button button = binding.allList;
-                boolean z = true;
-                button.setText(getString(R.string.all_goals, new Object[]{Integer.valueOf(pendingList.size() + completedList.size())}));
-                Button button2 = binding.pendingList;
-                button2.setText(getString(R.string.pending, new Object[]{Integer.valueOf(pendingList.size())}));
-                Button button3 = binding.completedList;
-                button3.setText(getString(R.string.completed, new Object[]{Integer.valueOf(completedList.size())}));
-                if (completedList.size() <= 0 && pendingList.size() <= 0) {
-                    z = false;
+                    Log.d("taggy", "All Todo Status Code = " + response.code());
+                    APIService.AllTodoListsResponse userTodoData = response.body();
+                    Log.d("taggy", userTodoData.error);
+
+                    // If there are bucket lists in DB will return error = ""
+                    if (userTodoData.error.equals("")) {
+                        // Add todo items like we did in VisionActivity
+                        ArrayList<TodoComponents> listy = userTodoData.results;
+
+                        Log.d("taggy", "Size of todo list:" + listy.size());
+
+                        // Get itemTitle of first todo item
+                        Log.d("taggy", listy.get(0).itemTitle);
+
+                        for (int i = 0; i < listy.size(); i++) {
+                            VisionModel vm = new VisionModel();
+                            TodoComponents listyItem = listy.get(i);
+                            vm.setName(listyItem.getItemTitle());
+                            vm.setId(listyItem.getID());
+
+                            if (listyItem.completed) {
+                                completedList.add(vm);
+                            } else {
+                                pendingList.add(vm);
+                            }
+                        }
+
+                        hashMap.put(getString(R.string.pending_full), pendingList);
+                        hashMap.put(getString(R.string.completed_full), completedList);
+                        entries = new ArrayList<>(hashMap.entrySet());
+                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(DashBoardActivity.this));
+                        RecyclerView recyclerView = binding.recyclerView;
+                        recyclerView.setAdapter(new AdapterD(entries));
+                        Button button = binding.allList;
+                        boolean z = true;
+                        button.setText(getString(R.string.all_goals, new Object[]{Integer.valueOf(pendingList.size() + completedList.size())}));
+                        Button button2 = binding.pendingList;
+                        button2.setText(getString(R.string.pending, new Object[]{Integer.valueOf(pendingList.size())}));
+                        Button button3 = binding.completedList;
+                        button3.setText(getString(R.string.completed, new Object[]{Integer.valueOf(completedList.size())}));
+                        if (completedList.size() <= 0 && pendingList.size() <= 0) {
+                            z = false;
+                        }
+                        setDefaultLayout(z);
+                    }
                 }
-                setDefaultLayout(z);
-            }
-        }).execute(new Object[0]);
+
+                @Override
+                public void onFailure(Call<APIService.AllTodoListsResponse> call, Throwable t) {
+                    Log.d("TAGGYTAG", "api failing!");
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getBucketListData() {
+        Log.d("taggy", "getting data from user: " + LoggedInUser.getUserId());
+        try {
+            APIService.AllBucketListsRequest bucketLists = new APIService.AllBucketListsRequest(LoggedInUser.getUserId());
+            API.allBuckets(bucketLists).enqueue(new Callback<APIService.AllBucketListsResponse>() {
+                @Override
+                public void onResponse(Call<APIService.AllBucketListsResponse> call, Response<APIService.AllBucketListsResponse> response) {
+                    LinkedHashMap<String, ArrayList<VisionModel>> hashMap = new LinkedHashMap<>();
+
+                    Log.d("taggy", "All Bucket Status Code = " + response.code());
+                    APIService.AllBucketListsResponse userBucketData = response.body();
+                    Log.d("taggy", userBucketData.error);
+
+                    // If there are bucket lists in DB will return error = ""
+                    if (userBucketData.error.equals("")) {
+                        // Add todo items like we did in VisionActivity
+                        ArrayList<BucketComponents> listy = userBucketData.results;
+
+                        Log.d("taggy", "Size of bucket list:" + listy.size());
+
+                        // Get itemTitle of first todo item
+                        Log.d("taggy", listy.get(0).itemTitle);
+
+                        for (int i = 0; i < listy.size(); i++) {
+                            VisionModel vm = new VisionModel();
+                            BucketComponents listyItem = listy.get(i);
+                            vm.setName(listyItem.getItemTitle());
+                            vm.setId(listyItem.getID());
+
+                            if (listyItem.completed) {
+                                completedList.add(vm);
+                            } else {
+                                pendingList.add(vm);
+                            }
+                        }
+
+                        hashMap.put(getString(R.string.pending_full), pendingList);
+                        hashMap.put(getString(R.string.completed_full), completedList);
+                        entries = new ArrayList<>(hashMap.entrySet());
+                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(DashBoardActivity.this));
+                        RecyclerView recyclerView = binding.recyclerView;
+                        recyclerView.setAdapter(new AdapterD(entries));
+                        Button button = binding.allList;
+                        boolean z = true;
+                        button.setText(getString(R.string.all_goals, new Object[]{Integer.valueOf(pendingList.size() + completedList.size())}));
+                        Button button2 = binding.pendingList;
+                        button2.setText(getString(R.string.pending, new Object[]{Integer.valueOf(pendingList.size())}));
+                        Button button3 = binding.completedList;
+                        button3.setText(getString(R.string.completed, new Object[]{Integer.valueOf(completedList.size())}));
+                        if (completedList.size() <= 0 && pendingList.size() <= 0) {
+                            z = false;
+                        }
+                        setDefaultLayout(z);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<APIService.AllBucketListsResponse> call, Throwable t) {
+                    Log.d("TAGGYTAG", "api failing!");
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
