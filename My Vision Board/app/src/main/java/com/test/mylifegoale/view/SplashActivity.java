@@ -122,16 +122,21 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         if (this.rowIdFolder > 0) {
-            insertAffirmation("I am thankful to the Universe for everything in my life.", true);
-            insertAffirmation("Every person on this planet enriches my life in some way or other. I am thankful to all.", false);
-            insertAffirmation("I am so grateful for supportive friends and a loving family.", false);
-            insertAffirmation("I am eternally grateful for the love I am capable of giving, and for the love I have yet to receive.", false);
-            insertAffirmation("My heart is filled with happiness and gratitude.", false);
-            insertAffirmation("I experience gratitude for everything I have in my life.", true);
-            insertAffirmation("I am grateful for excellent health, prosperity and true love.", false);
-            insertAffirmation("I am grateful for the abundance in my life.", false);
-            insertAffirmation("Thank you, Universe for the fun, wealth, joy, and fulfillment that is on the way.", false);
-            insertAffirmation("I am grateful for the beauty that I see around me and for the beauty within me.", true);
+            insertAffirmation("I have the power to create all the success and prosperity I desire.", true);
+            insertAffirmation("My mind is free of resistance and open to exciting new possibilities.", false);
+            insertAffirmation("I am worthy of all the good life has to offer, and I deserve to be successful.", false);
+            insertAffirmation("I believe in myself and my ability to succeed.", false);
+            insertAffirmation("The universe is filled with endless opportunities for me and my career.", false);
+            insertAffirmation("I am always open minded and eager to explore new avenues to success.", false);
+            insertAffirmation("I recognize opportunity when it knocks and seize the moment.", false);
+            insertAffirmation("I am committed to achieving success in every area of my life.", true);
+            insertAffirmation("By creating success for myself I am creating success and opportunities for others.", false);
+            insertAffirmation("I recognize every new challenge as a new opportunity.", false);
+            insertAffirmation("Every day I dress for success in body, mind, and spirit.", false);
+            insertAffirmation("I have released all limiting beliefs about my ability to succeed.", false);
+            insertAffirmation("I have an endless supply of new ideas that help me become more and more successful.", false);
+            insertAffirmation("I always expect a positive outcome and I naturally attract good results.", false);
+            insertAffirmation("I trust my intuition and am always guided to make wise decisions.", false);
         }
         this.rowCount = 0;
         this.folderRowModel = new FolderRowModel(AppConstants.getUniqueId(), "Success", "Success", Constants.FOLDER_COLOR_TYPE_Success, (int) this.rowIdFolder, true);
@@ -278,16 +283,16 @@ public class SplashActivity extends AppCompatActivity {
             e9.printStackTrace();
         }
         if (this.rowIdFolder > 0) {
-            insertAffirmation("Love follows me everywhere I go", true);
-            insertAffirmation("My heart is always open to love.", false);
-            insertAffirmation("I am attracting my soulmate.", true);
-            insertAffirmation("I have the power to give love endlessly.", false);
-            insertAffirmation("I am constantly surrounded by love.", false);
-            insertAffirmation("I welcome love with open arms.", false);
-            insertAffirmation("I naturally attract love everywhere I go.", false);
-            insertAffirmation("The more I desire someone the more they become attracted to me.", false);
-            insertAffirmation("I draw love and romance into my life with ease.", false);
-            insertAffirmation("My relationships are always safe and fulfilling.", false);
+            insertAffirmation("I can accomplish anything I set my mind on", true);
+            insertAffirmation("I have the energy and passion to make my thoughts reality", true);
+            insertAffirmation("I am a creative genius", false);
+            insertAffirmation("Everything I touch is a success", false);
+            insertAffirmation("Every day is a perfect day for me.", false);
+            insertAffirmation("Everything is super in my life", false);
+            insertAffirmation("I always see the bright side in life.", false);
+            insertAffirmation("I am a radiant being and enjoy life to its fullest", false);
+            insertAffirmation("I am passionate about life!", false);
+            insertAffirmation("I am unstoppable!", false);
         }
 
         this.rowCount = 0;
@@ -298,16 +303,16 @@ public class SplashActivity extends AppCompatActivity {
             e10.printStackTrace();
         }
         if (this.rowIdFolder > 0) {
-            insertAffirmation("I see my family through the eyes of love.", true);
-            insertAffirmation("I am grateful for every member of my family.", false);
-            insertAffirmation("I accept my family members just as they are.", false);
-            insertAffirmation("I am grateful that my family accepts me for who I am.", true);
-            insertAffirmation("In the presence of my family I feel safe, peaceful, and content.", false);
-            insertAffirmation("My family and I communicate with each other freely and openly.", false);
-            insertAffirmation("Every day I send the energy of love, light, and happiness to each member of my family.", false);
-            insertAffirmation("Every person in my family is healthy and happy.", false);
-            insertAffirmation("There is peace and harmony in my family.", false);
-            insertAffirmation("I am loved and respected by my family.", false);
+            insertAffirmation("I can accomplish anything I set my mind on", true);
+            insertAffirmation("I have the energy and passion to make my thoughts reality", true);
+            insertAffirmation("I am a creative genius", false);
+            insertAffirmation("Everything I touch is a success", false);
+            insertAffirmation("Every day is a perfect day for me.", false);
+            insertAffirmation("Everything is super in my life", false);
+            insertAffirmation("I always see the bright side in life.", false);
+            insertAffirmation("I am a radiant being and enjoy life to its fullest", false);
+            insertAffirmation("I am passionate about life!", false);
+            insertAffirmation("I am unstoppable!", false);
         }
         this.rowCount = 0;
         this.folderRowModel = new FolderRowModel(AppConstants.getUniqueId(), Constants.FOLDER_IMAGE_TYPE_Relationship, Constants.FOLDER_IMAGE_TYPE_Relationship, Constants.FOLDER_COLOR_TYPE_Relationship, (int) this.rowIdFolder, true);
@@ -317,17 +322,16 @@ public class SplashActivity extends AppCompatActivity {
             e11.printStackTrace();
         }
         if (this.rowIdFolder > 0) {
-            insertAffirmation("I have found the right partner for me, who loves me very much.", true);
-            insertAffirmation("I am so happy for having a wonderful and loving partner.", false);
-            insertAffirmation("My spouse loves me and accepts me as I am.", false);
-            insertAffirmation("I have a loving, understanding and supportive partner.", false);
-            insertAffirmation("It is so pleasant and fun to be with my life partner.", true);
-            insertAffirmation("My partner and I love and fully trust each other. Life is so wonderful.", false);
-            insertAffirmation("My partner and I are both happy and in love. Our relationship is joyous.", false);
-            insertAffirmation("I am in a loving relationship.", false);
-            insertAffirmation("My partner effortlessly senses my love", false);
-            insertAffirmation("My partner believes in me and supports me fully.", false);
-            insertAffirmation("I always express my love feelings openly to my partner.", false);
+            insertAffirmation("I love myself, respect myself and accept myself exactly as I am.", true);
+            insertAffirmation("I deserve to be happy and loved.", false);
+            insertAffirmation("I am doing my best and it is enough.", true);
+            insertAffirmation("I love myself and treat myself with kindness.", false);
+            insertAffirmation("I am responsible for what happens to my body, so I treat it with love, respect, and care.", false);
+            insertAffirmation("I am a strong, confident woman and will only continue to become stronger.", false);
+            insertAffirmation("I am beautiful and I am worthy of every beautiful thing in this world.", false);
+            insertAffirmation("I ask for what I want because I deserve it. I honor my desires today and always.", false);
+            insertAffirmation("I trust my own wisdom and intuition. I am the only person who knows what is best for me.", false);
+            insertAffirmation("I am constantly amazed by my body and its abilities.", true);
         }
         this.rowCount = 0;
         this.folderRowModel = new FolderRowModel(AppConstants.getUniqueId(), Constants.FOLDER_IMAGE_TYPE_Forgiveness, Constants.FOLDER_IMAGE_TYPE_Forgiveness, Constants.FOLDER_COLOR_TYPE_Forgiveness, (int) this.rowIdFolder, true);
@@ -413,19 +417,16 @@ public class SplashActivity extends AppCompatActivity {
             e16.printStackTrace();
         }
         if (this.rowIdFolder > 0) {
-            insertAffirmation("I am healthy and flying through my pregnancy.", true);
-            insertAffirmation("My baby is safe and loved", false);
-            insertAffirmation("My baby is happy and healthy", false);
-            insertAffirmation("I am grateful for my pregnancy.", false);
-            insertAffirmation("I have a natural ability to give birth easily", false);
-            insertAffirmation("I am deeply attached to my baby.", true);
-            insertAffirmation("I am a strong and healthy woman.", false);
-            insertAffirmation("My baby is healthy, relaxed and calm.", false);
-            insertAffirmation("I choose to be relaxed and calm during my pregnancy.", false);
-            insertAffirmation("My baby feels my love.", false);
-            insertAffirmation("My body knows how and when to give birth my baby.", false);
-            insertAffirmation("I have an amazing support system! When I ask for help, I receive help.", false);
-            insertAffirmation("My body is beautifully nourishing the child I carry. My child is perfectly healthy.", false);
+            insertAffirmation("I can accomplish anything I set my mind on", true);
+            insertAffirmation("I have the energy and passion to make my thoughts reality", true);
+            insertAffirmation("I am a creative genius", false);
+            insertAffirmation("Everything I touch is a success", false);
+            insertAffirmation("Every day is a perfect day for me.", false);
+            insertAffirmation("Everything is super in my life", false);
+            insertAffirmation("I always see the bright side in life.", false);
+            insertAffirmation("I am a radiant being and enjoy life to its fullest", false);
+            insertAffirmation("I am passionate about life!", false);
+            insertAffirmation("I am unstoppable!", false);
         }
         this.rowCount = 0;
         this.folderRowModel = new FolderRowModel(AppConstants.getUniqueId(), Constants.FOLDER_IMAGE_TYPE_Beauty, Constants.FOLDER_IMAGE_TYPE_Beauty, Constants.FOLDER_COLOR_TYPE_Beauty, (int) this.rowIdFolder, true);
