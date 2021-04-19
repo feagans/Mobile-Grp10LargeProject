@@ -150,11 +150,10 @@ public class LoginActivity extends AppCompatActivity {
                                 LoggedInUser.setUserVerifiedStatus(userData.isVerified);
                             }
 
-                            // Invalid credentials status code = 204
+                            // Invalid credentials or user not verified status code = 204
                             else {
-                                Log.d("TAGGYTAG", "FAILED USER!!");
-                                // Show error message
-                                showLoginFailed();
+                                Log.d("taggy", "204code" );
+                                showLoginFail();
                             }
 
                             loginViewModel.login(validUser);
@@ -175,8 +174,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void showLoginFailed() {
-        Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<font color='#fc0303' ><b>" + "Invalid Credentials" + "</b></font>"), Toast.LENGTH_SHORT);
+    private void showLoginFail() {
+        Toast toast = Toast.makeText(getApplicationContext(), Html.fromHtml("<font color='#fc0303' ><b>" + "Invalid Credentials or Unverified User" + "</b></font>"), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.TOP, 0, 0);
         toast.show();
     }
