@@ -171,6 +171,7 @@ public class DashBoardActivity extends BaseActivity implements DashboardAdapter.
                             BucketComponents listyItem = listy.get(i);
                             vm.setName(listyItem.getItemTitle());
                             vm.setId(listyItem.getID());
+                            vm.setDescription(listyItem.getCaption());
 
                             if (listyItem.completed) {
                                 completedList.add(vm);
